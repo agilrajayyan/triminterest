@@ -1,14 +1,9 @@
-.App {
-  text-align: center;
+.inputs-container {
+  max-width: 1000px;
+  margin: 100px auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.emi-summary-container {
+  max-width: 400px;
+  margin: 0 auto;
 }
