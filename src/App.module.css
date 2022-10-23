@@ -1,9 +1,7 @@
-.inputs-container {
+.inputs_container {
   max-width: 1000px;
   margin: 100px auto;
 }
 
-.emi-summary-container {
-  max-width: 400px;
-  margin: 0 auto;
+.emi_summary_container {
 }

@@ -1,17 +1,25 @@
-.flex-h {
+.flex_h {
   display: flex;
   flex-direction: row;
 }
 
-.flex-v {
+.flex_v {
   display: flex;
   flex-direction: column;
 }
 
-.justify-center {
+.justify_center {
   justify-content: center;
 }
 
-.align-basline {
+.align_basline {
   align-items: baseline;
+}
+
+.margin_bottom_1 {
+  margin-bottom: 15px;
+}
+
+.margin_bottom_2 {
+  margin-bottom: 20px;
 }

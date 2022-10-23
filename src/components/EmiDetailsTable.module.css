@@ -1,0 +1,27 @@
+.table {
+  border-spacing: 5px;
+}
+
+.table_header_cell,
+.table_cell {
+  padding: 10px 10px;
+}
+
+.table_header_cell {
+  text-align: end;
+  background: #e4e4e7;
+}
+
+.table_cell {
+  text-align: end;
+}
+
+.month_column_cell {
+  text-align: start;
+  padding: 10px 10px;
+  background: #e4e4e7;
+}
+
+.dark_bg {
+  background: #e4e4e7;
+}
