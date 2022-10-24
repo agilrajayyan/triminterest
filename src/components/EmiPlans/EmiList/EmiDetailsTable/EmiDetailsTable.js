@@ -1,6 +1,6 @@
 import classes from './EmiDetailsTable.module.css';
 import Typography from '@mui/material/Typography';
-import { getMonthByIndex } from '../utils/helper';
+import { getMonthByIndex } from '../../../../utils/helper';
 
 function EmiDetailsTable(props) {
   const formatter = new Intl.NumberFormat('en-IN');

@@ -12,6 +12,8 @@ export const calculateEmi = (inputs) => {
     loanAmount,
     emiStartMonth,
     emisStartYear,
+    prepaymentEnabled,
+    monthlyPrepaymentAmount,
   } = inputs;
 
   const monthlyInterestRate = interestRate / 12 / 100;
@@ -26,27 +28,34 @@ export const calculateEmi = (inputs) => {
   );
 
   let loanRemaining = loanAmount;
-  const payments = Array(numberOfMonths)
-    .fill({})
-    .map((elem, index) => {
-      const interestComponent = monthlyInterestRate * loanRemaining;
-      const pricipalComponent = emi - interestComponent;
-      loanRemaining = loanRemaining - pricipalComponent;
-
-      return {
-        installmentNumber: index,
-        paymentDate: paymentDates.at(index),
-        emi: Math.round(emi),
-        pricipalComponent: Math.round(pricipalComponent),
-        interestComponent: Math.round(interestComponent),
-        loanRemaining: Math.round(loanRemaining),
-      };
+  let payments = [];
+  for (let index = 0; index < numberOfMonths; index++) {
+    const interestComponent = monthlyInterestRate * loanRemaining;
+    const isLastEmi = loanRemaining + interestComponent <= emi;
+    const pricipalComponent = isLastEmi
+      ? loanRemaining
+      : emi - interestComponent;
+    loanRemaining = isLastEmi ? 0 : loanRemaining - pricipalComponent;
+    if (prepaymentEnabled && !isLastEmi) {
+      loanRemaining = loanRemaining - monthlyPrepaymentAmount;
+    }
+    payments.push({
+      installmentNumber: index,
+      paymentDate: paymentDates.at(index),
+      emi: Math.round(pricipalComponent + interestComponent),
+      pricipalComponent: Math.round(pricipalComponent),
+      interestComponent: Math.round(interestComponent),
+      loanRemaining: Math.round(loanRemaining),
     });
+  }
+  payments = payments.filter((payment) => payment.emi > 0);
+  const totalInterest = payments.reduce((acc, curr) => {
+    return acc + curr.interestComponent;
+  }, 0);
   const years = payments.map((payment) => payment.paymentDate.year);
   const uniqueYears = Array.from(new Set(years));
   const yearlyBasisPayments = uniqueYears.map((year, index) => {
     return {
-      detailedView: index === 0 ? true : false,
       year,
       payments: payments.filter((payment) => payment.paymentDate.year === year),
     };

@@ -1,25 +1,49 @@
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import EmiDetailsTable from './EmiDetailsTable';
+import EmiDetailsTable from './EmiDetailsTable/EmiDetailsTable';
 import classes from './EmiList.module.css';
-import shared from '../styles.module.css';
+import shared from '../../../styles.module.css';
+import { useState, useEffect } from 'react';
 
 function EmiList(props) {
-  const clickHandler = (year, visibility) => {
-    props.onSetVisibility(year, visibility);
+  const [emiSummary, setEmiSummary] = useState([]);
+
+  const visibilityHandler = (year, visibility) => {
+    setEmiSummary((prevEmiSummary) => {
+      return prevEmiSummary.map((elem) => {
+        return {
+          ...elem,
+          detailedView: elem.year === year ? visibility : elem.detailedView,
+        };
+      });
+    });
   };
 
-  const getArrowIcon = (year, detailedView) => {
+  useEffect(() => {
+    const summary = props.emiSummary.map((elem, index) => {
+      return {
+        ...elem,
+        detailedView: index === 0 ? true : false,
+      };
+    });
+    setEmiSummary(summary);
+  }, [props.emiSummary]);
+
+  const expandOrShrink = (year, detailedView) => {
     return detailedView ? (
       <KeyboardArrowDownIcon
         className={classes.arrow_icon}
-        onClick={clickHandler.bind(this, year, false)}
+        onClick={() => {
+          visibilityHandler(year, false);
+        }}
       />
     ) : (
       <KeyboardArrowRightIcon
         className={classes.arrow_icon}
-        onClick={clickHandler.bind(this, year, true)}
+        onClick={() => {
+          visibilityHandler(year, true);
+        }}
       />
     );
   };
@@ -27,11 +51,11 @@ function EmiList(props) {
   return (
     <div>
       <h2>
-        {props.emiSummary.map((yearlyDetails) => {
+        {emiSummary?.map((yearlyDetails) => {
           return (
             <div key={yearlyDetails.year}>
               <div className={`${shared.flex_h} ${shared.align_basline}`}>
-                {getArrowIcon(yearlyDetails.year, yearlyDetails.detailedView)}
+                {expandOrShrink(yearlyDetails.year, yearlyDetails.detailedView)}
                 <Typography
                   variant="h4"
                   gutterBottom
