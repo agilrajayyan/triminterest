@@ -1,6 +1,7 @@
 import classes from './EmiDetailsTable.module.css';
 import Typography from '@mui/material/Typography';
 import { getMonthByIndex } from '../../../../utils/helper';
+import TextField from '@mui/material/TextField';
 
 function EmiDetailsTable(props) {
   const formatter = new Intl.NumberFormat('en-IN');
@@ -37,7 +38,7 @@ function EmiDetailsTable(props) {
                 }`}
               >
                 <Typography variant="body2">
-                  {getMonthByIndex(elem.paymentDate.month)}
+                  {getMonthByIndex(elem.paymentDate.getMonth())}
                 </Typography>
               </td>
               <td

@@ -9,43 +9,50 @@ import FormControl from '@mui/material/FormControl';
 import Card from '@mui/material/Card';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
-import { calculateEmi } from './../../utils/helper';
+import {
+  getPrePaymentEmiPlan,
+  getRegularEmiPlan,
+  groupPaymentsByYear,
+} from './../../utils/helper';
 
 function EmiPlans(props) {
-  const [regularEmiPlan, setRegularEmiPlan] = useState([]);
-  const [prepaymentEmiPlan, setPrepaymentEmiPlan] = useState([]);
-  const [monthlyPrepaymentAmount, setMonthlyPrepaymentAmount] = useState(1000);
+  const [regularEmiPlan, setRegularEmiPlan] = useState({});
+  const [prepaymentEmiPlan, setPrepaymentEmiPlan] = useState({});
+  const [emiHikeRate, setemiHikeRate] = useState(5);
+  const [yearlyPrepaymentAmount, setYearlyPrepaymentAmount] = useState(10000);
+
+  const setEmiPlan = (isPrePaymentPlan, payload) => {
+    const plan = isPrePaymentPlan
+      ? getPrePaymentEmiPlan(payload)
+      : getRegularEmiPlan(payload);
+    const emiPlan = {
+      totalInterest: plan.totalInterest,
+      payments: groupPaymentsByYear(plan.payments),
+    };
+    isPrePaymentPlan
+      ? setPrepaymentEmiPlan(emiPlan)
+      : setRegularEmiPlan(emiPlan);
+  };
 
   useEffect(() => {
-    const {
-      interestRate,
-      numberOfYears,
-      loanAmount,
-      emiStartMonth,
-      emisStartYear,
-    } = props.emiParams;
+    const { interestRate, numberOfYears, loanAmount, emiStartDate } =
+      props.emiParams;
 
-    setRegularEmiPlan(
-      calculateEmi({
-        interestRate,
-        numberOfMonths: numberOfYears * 12,
-        loanAmount,
-        emiStartMonth,
-        emisStartYear,
-        prepaymentEnabled: false,
-      })
-    );
-    setPrepaymentEmiPlan(
-      calculateEmi({
-        interestRate,
-        numberOfMonths: numberOfYears * 12,
-        loanAmount,
-        emiStartMonth,
-        emisStartYear,
-        prepaymentEnabled: true,
-        monthlyPrepaymentAmount,
-      })
-    );
+    setEmiPlan(false, {
+      interestRate,
+      numberOfMonths: numberOfYears * 12,
+      loanAmount,
+      emiStartDate,
+    });
+
+    setEmiPlan(true, {
+      interestRate,
+      numberOfMonths: numberOfYears * 12,
+      loanAmount,
+      emiStartDate,
+      emiHikeRate,
+      yearlyPrepaymentAmount,
+    });
   }, [props.emiParams]);
 
   return (
@@ -53,7 +60,7 @@ function EmiPlans(props) {
       className={`${classes.emi_summary_container} ${shared.flex_h} ${shared.justify_center}`}
     >
       <div className={`${classes.regular_emi}`}>
-        <EmiList emiSummary={regularEmiPlan} />
+        <EmiList emiPlan={regularEmiPlan} />
       </div>
       <Card>
         <CardActions>
@@ -62,23 +69,20 @@ function EmiPlans(props) {
               <FormControl variant="standard" sx={{ width: '10ch' }}>
                 <Input
                   id="standard-adornment-weight"
-                  value={monthlyPrepaymentAmount}
-                  startAdornment={
-                    <InputAdornment position="start">$</InputAdornment>
+                  value={emiHikeRate}
+                  endAdornment={
+                    <InputAdornment position="start">%</InputAdornment>
                   }
                   onChange={(event) => {
-                    setMonthlyPrepaymentAmount(Number(event.target.value));
-                    setPrepaymentEmiPlan(
-                      calculateEmi({
-                        interestRate: props.emiParams.interestRate,
-                        numberOfMonths: props.emiParams.numberOfYears * 12,
-                        loanAmount: props.emiParams.loanAmount,
-                        emiStartMonth: props.emiParams.emiStartMonth,
-                        emisStartYear: props.emiParams.emisStartYear,
-                        prepaymentEnabled: true,
-                        monthlyPrepaymentAmount: Number(event.target.value),
-                      })
-                    );
+                    setemiHikeRate(Number(event.target.value));
+                    setEmiPlan(true, {
+                      interestRate: props.emiParams.interestRate,
+                      numberOfMonths: props.emiParams.numberOfYears * 12,
+                      loanAmount: props.emiParams.loanAmount,
+                      emiStartDate: props.emiParams.emiStartDate,
+                      emiHikeRate: Number(event.target.value),
+                      yearlyPrepaymentAmount,
+                    });
                   }}
                   aria-describedby="standard-weight-helper-text"
                   inputProps={{
@@ -87,13 +91,42 @@ function EmiPlans(props) {
                 />
               </FormControl>
               <Typography variant="body2">
-                additional monthly payment
+                increase in EMI every year
+              </Typography>
+            </div>
+            <div className={`${shared.flex_h}`}>
+              <FormControl variant="standard" sx={{ width: '10ch' }}>
+                <Input
+                  id="standard-adornment-weight"
+                  value={yearlyPrepaymentAmount}
+                  startAdornment={
+                    <InputAdornment position="start">$</InputAdornment>
+                  }
+                  onChange={(event) => {
+                    setYearlyPrepaymentAmount(Number(event.target.value));
+                    setEmiPlan(true, {
+                      interestRate: props.emiParams.interestRate,
+                      numberOfMonths: props.emiParams.numberOfYears * 12,
+                      loanAmount: props.emiParams.loanAmount,
+                      emiStartDate: props.emiParams.emiStartDate,
+                      emiHikeRate: Number(event.target.value),
+                      yearlyPrepaymentAmount: Number(event.target.value),
+                    });
+                  }}
+                  aria-describedby="standard-weight-helper-text"
+                  inputProps={{
+                    'aria-label': 'weight',
+                  }}
+                />
+              </FormControl>
+              <Typography variant="body2">
+                additional payment every year
               </Typography>
             </div>
           </div>
         </CardActions>
         <CardContent>
-          <EmiList emiSummary={prepaymentEmiPlan} />
+          <EmiList emiPlan={prepaymentEmiPlan} />
         </CardContent>
       </Card>
     </section>

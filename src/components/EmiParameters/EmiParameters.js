@@ -4,16 +4,25 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classes from './EmiParameters.module.css';
 import shared from '../../styles.module.css';
 import Button from '@mui/material/Button';
 
 function EmiParameters(props) {
-  const [loanAmount, setLoanAmount] = useState(240000);
-  const [interestRate, seInterestRate] = useState(11.88);
-  const [numberOfYears, setNumberOfYears] = useState(2);
+  const [loanAmount, setLoanAmount] = useState(4800000);
+  const [interestRate, seInterestRate] = useState(8);
+  const [numberOfYears, setNumberOfYears] = useState(25);
   const [emiStartdate, setEmiStartdate] = useState(dayjs(new Date()));
+
+  useEffect(() => {
+    props.onChangeEmiParams({
+      loanAmount,
+      interestRate,
+      numberOfYears,
+      emiStartDate: new Date(emiStartdate.$y, emiStartdate.$M, 1),
+    });
+  }, [loanAmount, interestRate, numberOfYears, emiStartdate]);
 
   return (
     <section className={classes.inputs_container}>
@@ -68,22 +77,6 @@ function EmiParameters(props) {
             )}
           />
         </LocalizationProvider>
-      </div>
-      <div className={`${shared.flex_h} ${shared.justify_center}`}>
-        <Button
-          variant="contained"
-          onClick={() => {
-            props.onChangeEmiParams({
-              loanAmount,
-              interestRate,
-              numberOfYears,
-              emiStartMonth: emiStartdate.$M,
-              emisStartYear: emiStartdate.$y,
-            });
-          }}
-        >
-          Calculate
-        </Button>
       </div>
     </section>
   );

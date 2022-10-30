@@ -5,27 +5,68 @@
   r -> Monthy interest rate
   n -> Number of period in months
 */
-export const calculateEmi = (inputs) => {
+export const getPrePaymentEmiPlan = (inputs) => {
   const {
     interestRate,
     numberOfMonths,
     loanAmount,
-    emiStartMonth,
-    emisStartYear,
-    prepaymentEnabled,
-    monthlyPrepaymentAmount,
+    emiStartDate,
+    emiHikeRate,
+    yearlyPrepaymentAmount,
   } = inputs;
 
+  console.log(yearlyPrepaymentAmount);
   const monthlyInterestRate = interestRate / 12 / 100;
   const rate = Math.pow(1 + monthlyInterestRate, numberOfMonths);
+  const baseEmi = loanAmount * monthlyInterestRate * (rate / (rate - 1));
+  let emi = baseEmi;
 
+  let loanRemaining = loanAmount;
+  let payments = [];
+  for (let index = 0; index < numberOfMonths; index++) {
+    //Increasing the EMI by the user given rate starting off from second year
+    if (index !== 0 && index % 12 === 0) {
+      emi += emi * (emiHikeRate / 100);
+    }
+
+    const interestComponent = monthlyInterestRate * loanRemaining;
+    const isLastEmi = loanRemaining + interestComponent <= emi;
+    const pricipalComponent = isLastEmi
+      ? loanRemaining
+      : emi - interestComponent;
+    loanRemaining = isLastEmi ? 0 : loanRemaining - pricipalComponent;
+
+    payments.push({
+      installmentNumber: index,
+      paymentDate: getNthPaymentDate(emiStartDate, index),
+      emi: Math.round(pricipalComponent + interestComponent),
+      pricipalComponent: Math.round(pricipalComponent),
+      interestComponent: Math.round(interestComponent),
+      loanRemaining: Math.round(loanRemaining),
+    });
+  }
+
+  return {
+    totalInterest: payments.reduce(
+      (acc, curr) => acc + curr.interestComponent,
+      0
+    ),
+    payments: payments.filter((payment) => payment.emi > 0),
+  };
+};
+
+/*
+  emi = P * r * ((1+r)^n / ((1+r)^n -1))
+  where, 
+  P -> Principal Loan Amount
+  r -> Monthy interest rate
+  n -> Number of period in months
+*/
+export const getRegularEmiPlan = (inputs) => {
+  const { interestRate, numberOfMonths, loanAmount, emiStartDate } = inputs;
+  const monthlyInterestRate = interestRate / 12 / 100;
+  const rate = Math.pow(1 + monthlyInterestRate, numberOfMonths);
   const emi = loanAmount * monthlyInterestRate * (rate / (rate - 1));
-
-  const paymentDates = getMonthsWithYear(
-    emiStartMonth,
-    emisStartYear,
-    numberOfMonths
-  );
 
   let loanRemaining = loanAmount;
   let payments = [];
@@ -36,47 +77,38 @@ export const calculateEmi = (inputs) => {
       ? loanRemaining
       : emi - interestComponent;
     loanRemaining = isLastEmi ? 0 : loanRemaining - pricipalComponent;
-    if (prepaymentEnabled && !isLastEmi) {
-      loanRemaining = loanRemaining - monthlyPrepaymentAmount;
-    }
+
     payments.push({
+      date: getNthPaymentDate(emiStartDate, index),
       installmentNumber: index,
-      paymentDate: paymentDates.at(index),
+      paymentDate: getNthPaymentDate(emiStartDate, index),
       emi: Math.round(pricipalComponent + interestComponent),
       pricipalComponent: Math.round(pricipalComponent),
       interestComponent: Math.round(interestComponent),
       loanRemaining: Math.round(loanRemaining),
     });
   }
-  payments = payments.filter((payment) => payment.emi > 0);
-  const totalInterest = payments.reduce((acc, curr) => {
-    return acc + curr.interestComponent;
-  }, 0);
-  const years = payments.map((payment) => payment.paymentDate.year);
-  const uniqueYears = Array.from(new Set(years));
-  const yearlyBasisPayments = uniqueYears.map((year, index) => {
-    return {
-      year,
-      payments: payments.filter((payment) => payment.paymentDate.year === year),
-    };
-  });
-  return yearlyBasisPayments;
+
+  return {
+    totalInterest: payments.reduce(
+      (acc, curr) => acc + curr.interestComponent,
+      0
+    ),
+    payments: payments.filter((payment) => payment.emi > 0),
+  };
 };
 
-const getMonthsWithYear = (startMonth, startYear, numberOfMonths) => {
-  let month = startMonth;
-  let year = startYear;
-  let monthsWithYears = [];
-  for (let counter = 0; counter <= numberOfMonths; counter++) {
-    monthsWithYears.push({ month, year });
-    if (month === 11) {
-      month = 0;
-      year++;
-    } else {
-      month++;
-    }
-  }
-  return monthsWithYears;
+export const groupPaymentsByYear = (payments) => {
+  const years = payments.map((payment) => payment.paymentDate.getFullYear());
+  const uniqueYears = Array.from(new Set(years));
+  return uniqueYears.map((year) => {
+    return {
+      year,
+      payments: payments.filter(
+        (payment) => payment.paymentDate.getFullYear() === year
+      ),
+    };
+  });
 };
 
 export const getMonthByIndex = (monthIndex) => {
@@ -95,4 +127,10 @@ export const getMonthByIndex = (monthIndex) => {
     'Dec',
   ];
   return months.at(monthIndex);
+};
+
+export const getNthPaymentDate = (startDate, installmentNumber) => {
+  const paymentDate = new Date(startDate);
+  paymentDate.setMonth(startDate.getMonth() + installmentNumber);
+  return paymentDate;
 };

@@ -11,7 +11,7 @@ function EmiList(props) {
 
   const visibilityHandler = (year, visibility) => {
     setEmiSummary((prevEmiSummary) => {
-      return prevEmiSummary.map((elem) => {
+      return prevEmiSummary?.map((elem) => {
         return {
           ...elem,
           detailedView: elem.year === year ? visibility : elem.detailedView,
@@ -21,14 +21,14 @@ function EmiList(props) {
   };
 
   useEffect(() => {
-    const summary = props.emiSummary.map((elem, index) => {
+    const summary = props.emiPlan?.payments?.map((elem, index) => {
       return {
         ...elem,
-        detailedView: index === 0 ? true : false,
+        detailedView: true,
       };
     });
     setEmiSummary(summary);
-  }, [props.emiSummary]);
+  }, [props.emiPlan]);
 
   const expandOrShrink = (year, detailedView) => {
     return detailedView ? (
