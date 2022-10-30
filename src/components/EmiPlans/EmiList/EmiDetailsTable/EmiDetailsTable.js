@@ -1,10 +1,9 @@
 import classes from './EmiDetailsTable.module.css';
 import Typography from '@mui/material/Typography';
-import { getMonthByIndex } from '../../../../utils/helper';
+import { formatNumber, getMonthByIndex } from '../../../../utils/helper';
 import TextField from '@mui/material/TextField';
 
 function EmiDetailsTable(props) {
-  const formatter = new Intl.NumberFormat('en-IN');
   const tableHeaderCell = `${classes.table_header_cell}`;
 
   return (
@@ -47,7 +46,7 @@ function EmiDetailsTable(props) {
                 }`}
               >
                 <Typography variant="body2">
-                  {formatter.format(elem.emi)}
+                  {formatNumber(elem.emi)}
                 </Typography>
               </td>
               <td
@@ -56,7 +55,7 @@ function EmiDetailsTable(props) {
                 }`}
               >
                 <Typography variant="body2">
-                  {formatter.format(elem.pricipalComponent)}
+                  {formatNumber(elem.pricipalComponent)}
                 </Typography>
               </td>
               <td
@@ -65,7 +64,7 @@ function EmiDetailsTable(props) {
                 }`}
               >
                 <Typography variant="body2">
-                  {formatter.format(elem.interestComponent)}
+                  {formatNumber(elem.interestComponent)}
                 </Typography>
               </td>
               <td
@@ -74,7 +73,7 @@ function EmiDetailsTable(props) {
                 }`}
               >
                 <Typography variant="body2">
-                  {formatter.format(elem.loanRemaining)}
+                  {formatNumber(elem.loanRemaining)}
                 </Typography>
               </td>
             </tr>

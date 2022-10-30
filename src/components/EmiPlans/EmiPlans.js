@@ -10,22 +10,31 @@ import Card from '@mui/material/Card';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import {
+  formatNumber,
   getPrePaymentEmiPlan,
   getRegularEmiPlan,
   groupPaymentsByYear,
 } from './../../utils/helper';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
 
 function EmiPlans(props) {
   const [regularEmiPlan, setRegularEmiPlan] = useState({});
   const [prepaymentEmiPlan, setPrepaymentEmiPlan] = useState({});
   const [emiHikeRate, setemiHikeRate] = useState(5);
-  const [yearlyPrepaymentAmount, setYearlyPrepaymentAmount] = useState(10000);
+  const [yearlyPrepaymentAmount, setYearlyPrepaymentAmount] = useState(1000);
+  const [prePaymentPlanBenefits, setPrePaymentPlanBenefits] = useState({});
+
+  const [age, setAge] = useState('year');
 
   const setEmiPlan = (isPrePaymentPlan, payload) => {
     const plan = isPrePaymentPlan
       ? getPrePaymentEmiPlan(payload)
       : getRegularEmiPlan(payload);
     const emiPlan = {
+      numberOfInstallments: plan.numberOfInstallments,
       totalInterest: plan.totalInterest,
       payments: groupPaymentsByYear(plan.payments),
     };
@@ -55,6 +64,21 @@ function EmiPlans(props) {
     });
   }, [props.emiParams]);
 
+  useEffect(() => {
+    const numberOfInstallments =
+      regularEmiPlan.numberOfInstallments -
+      prepaymentEmiPlan.numberOfInstallments;
+    const installmentsReducedBy = `${Math.floor(
+      numberOfInstallments / 12
+    )} years & ${numberOfInstallments % 12} months`;
+
+    setPrePaymentPlanBenefits({
+      savedInterest:
+        regularEmiPlan.totalInterest - prepaymentEmiPlan.totalInterest,
+      installmentsReducedBy,
+    });
+  }, [regularEmiPlan, prepaymentEmiPlan]);
+
   return (
     <section
       className={`${classes.emi_summary_container} ${shared.flex_h} ${shared.justify_center}`}
@@ -64,8 +88,20 @@ function EmiPlans(props) {
       </div>
       <Card>
         <CardActions>
-          <div>
-            <div className={`${shared.flex_h}`}>
+          <div className={classes.additional_payments}>
+            <section className={classes.benefits_container}>
+              <Typography variant="caption">You could save</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+                {formatNumber(prePaymentPlanBenefits.savedInterest)}
+              </Typography>
+
+              <Typography variant="caption">Installments reduced by</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+                {prePaymentPlanBenefits.installmentsReducedBy}
+              </Typography>
+            </section>
+            <div className={`${shared.flex_h} ${classes.prepayment_condition}`}>
+              <Checkbox inputProps={{ 'aria-label': 'controlled' }} />
               <FormControl variant="standard" sx={{ width: '10ch' }}>
                 <Input
                   id="standard-adornment-weight"
@@ -94,8 +130,9 @@ function EmiPlans(props) {
                 increase in EMI every year
               </Typography>
             </div>
-            <div className={`${shared.flex_h}`}>
-              <FormControl variant="standard" sx={{ width: '10ch' }}>
+            <div className={`${shared.flex_h} ${classes.prepayment_condition}`}>
+              <Checkbox inputProps={{ 'aria-label': 'controlled' }} />
+              <FormControl sx={{ width: '10ch' }}>
                 <Input
                   id="standard-adornment-weight"
                   value={yearlyPrepaymentAmount}
@@ -122,6 +159,19 @@ function EmiPlans(props) {
               <Typography variant="body2">
                 additional payment every year
               </Typography>
+              <FormControl variant="standard">
+                <Select
+                  id="demo-select-small"
+                  value={age}
+                  onChange={(event) => {
+                    setAge(event.target.value);
+                  }}
+                >
+                  <MenuItem value={'year'}>Year</MenuItem>
+                  <MenuItem value={'quarter'}>Quarter</MenuItem>
+                  <MenuItem value={'month'}>Month</MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </div>
         </CardActions>

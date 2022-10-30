@@ -24,7 +24,7 @@ function EmiList(props) {
     const summary = props.emiPlan?.payments?.map((elem, index) => {
       return {
         ...elem,
-        detailedView: true,
+        detailedView: index === 0 ? true : false,
       };
     });
     setEmiSummary(summary);

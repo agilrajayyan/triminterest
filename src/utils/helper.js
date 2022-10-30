@@ -45,13 +45,15 @@ export const getPrePaymentEmiPlan = (inputs) => {
       loanRemaining: Math.round(loanRemaining),
     });
   }
+  payments = payments.filter((payment) => payment.emi > 0);
 
   return {
+    payments,
+    numberOfInstallments: payments.length,
     totalInterest: payments.reduce(
       (acc, curr) => acc + curr.interestComponent,
       0
     ),
-    payments: payments.filter((payment) => payment.emi > 0),
   };
 };
 
@@ -88,13 +90,15 @@ export const getRegularEmiPlan = (inputs) => {
       loanRemaining: Math.round(loanRemaining),
     });
   }
+  payments = payments.filter((payment) => payment.emi > 0);
 
   return {
+    payments,
+    numberOfInstallments: payments.length,
     totalInterest: payments.reduce(
       (acc, curr) => acc + curr.interestComponent,
       0
     ),
-    payments: payments.filter((payment) => payment.emi > 0),
   };
 };
 
@@ -133,4 +137,8 @@ export const getNthPaymentDate = (startDate, installmentNumber) => {
   const paymentDate = new Date(startDate);
   paymentDate.setMonth(startDate.getMonth() + installmentNumber);
   return paymentDate;
+};
+
+export const formatNumber = (number) => {
+  return new Intl.NumberFormat('en-IN').format(number);
 };

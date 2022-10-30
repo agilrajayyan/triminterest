@@ -5,3 +5,16 @@
 .regular_emi {
   margin-top: 64px;
 }
+
+.additional_payments {
+  margin: 30px;
+}
+
+.benefits_container {
+  margin-bottom: 20px;
+}
+
+.prepayment_condition {
+  gap: 10px;
+  align-items: center;
+}
