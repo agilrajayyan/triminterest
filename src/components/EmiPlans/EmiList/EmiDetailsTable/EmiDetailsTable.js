@@ -23,6 +23,9 @@ function EmiDetailsTable(props) {
             <Typography variant="subtitle2">Interest</Typography>
           </th>
           <th className={tableHeaderCell}>
+            <Typography variant="subtitle2">Prepayment</Typography>
+          </th>
+          <th className={tableHeaderCell}>
             <Typography variant="subtitle2">Loan Remaining</Typography>
           </th>
         </tr>
@@ -66,6 +69,13 @@ function EmiDetailsTable(props) {
                 <Typography variant="body2">
                   {formatNumber(elem.interestComponent)}
                 </Typography>
+              </td>
+              <td
+                className={`${classes.table_cell} ${
+                  index % 2 !== 0 ? classes.dark_bg : ''
+                }`}
+              >
+                <Typography variant="body2">{elem.prepaymentAmount}</Typography>
               </td>
               <td
                 className={`${classes.table_cell} ${

@@ -12,10 +12,8 @@ export const getPrePaymentEmiPlan = (inputs) => {
     loanAmount,
     emiStartDate,
     emiHikeRate,
-    yearlyPrepaymentAmount,
+    prepayment,
   } = inputs;
-
-  console.log(yearlyPrepaymentAmount);
   const monthlyInterestRate = interestRate / 12 / 100;
   const rate = Math.pow(1 + monthlyInterestRate, numberOfMonths);
   const baseEmi = loanAmount * monthlyInterestRate * (rate / (rate - 1));
@@ -25,8 +23,8 @@ export const getPrePaymentEmiPlan = (inputs) => {
   let payments = [];
   for (let index = 0; index < numberOfMonths; index++) {
     //Increasing the EMI by the user given rate starting off from second year
-    if (index !== 0 && index % 12 === 0) {
-      emi += emi * (emiHikeRate / 100);
+    if (emiHikeRate.enabled && index !== 0 && index % 12 === 0) {
+      emi += emi * (emiHikeRate.value / 100);
     }
 
     const interestComponent = monthlyInterestRate * loanRemaining;
@@ -36,12 +34,27 @@ export const getPrePaymentEmiPlan = (inputs) => {
       : emi - interestComponent;
     loanRemaining = isLastEmi ? 0 : loanRemaining - pricipalComponent;
 
+    let prepaymentAmount = 0;
+    if (prepayment.enabled) {
+      const yearly = index !== 0 && (index + 1) % 12 === 0;
+      const quarterly = index !== 0 && (index + 1) % 3 === 0;
+      if (
+        (prepayment.interval === 'year' && yearly) ||
+        (prepayment.interval === 'quarter' && quarterly) ||
+        prepayment.interval === 'month'
+      ) {
+        loanRemaining -= prepayment.amount;
+        prepaymentAmount = prepayment.amount;
+      }
+    }
+
     payments.push({
       installmentNumber: index,
       paymentDate: getNthPaymentDate(emiStartDate, index),
-      emi: Math.round(pricipalComponent + interestComponent),
       pricipalComponent: Math.round(pricipalComponent),
       interestComponent: Math.round(interestComponent),
+      emi: Math.round(pricipalComponent + interestComponent),
+      prepaymentAmount: prepaymentAmount,
       loanRemaining: Math.round(loanRemaining),
     });
   }
