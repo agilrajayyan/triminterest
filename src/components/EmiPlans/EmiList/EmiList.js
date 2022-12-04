@@ -7,11 +7,11 @@ import shared from '../../../styles.module.css';
 import { useState, useEffect } from 'react';
 
 function EmiList(props) {
-  const [emiSummary, setEmiSummary] = useState([]);
+  const [emiPlan, setEmiPlan] = useState([]);
 
   const visibilityHandler = (year, visibility) => {
-    setEmiSummary((prevEmiSummary) => {
-      return prevEmiSummary?.map((elem) => {
+    setEmiPlan((prevEmiPlan) => {
+      return prevEmiPlan?.map((elem) => {
         return {
           ...elem,
           detailedView: elem.year === year ? visibility : elem.detailedView,
@@ -27,7 +27,7 @@ function EmiList(props) {
         detailedView: index === 0 ? true : false,
       };
     });
-    setEmiSummary(summary);
+    setEmiPlan(summary);
   }, [props.emiPlan]);
 
   const expandOrShrink = (year, detailedView) => {
@@ -51,7 +51,7 @@ function EmiList(props) {
   return (
     <div>
       <h2>
-        {emiSummary?.map((yearlyDetails) => {
+        {emiPlan?.map((yearlyDetails) => {
           return (
             <div key={yearlyDetails.year}>
               <div className={`${shared.flex_h} ${shared.align_basline}`}>
@@ -67,7 +67,8 @@ function EmiList(props) {
               {yearlyDetails.detailedView && (
                 <EmiDetailsTable
                   classes={shared.margin_bottom_2}
-                  data={yearlyDetails.payments}
+                  payments={yearlyDetails.payments}
+                  prepaymentEnabled={props.prepaymentEnabled}
                 />
               )}
             </div>

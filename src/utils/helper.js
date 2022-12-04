@@ -5,14 +5,14 @@
   r -> Monthy interest rate
   n -> Number of period in months
 */
-export const getPrePaymentEmiPlan = (inputs) => {
+export const getAcceleratedEmiPlan = (inputs) => {
   const {
     interestRate,
     numberOfMonths,
     loanAmount,
     emiStartDate,
     emiHikeRate,
-    prepayment,
+    regularPrepayment,
   } = inputs;
   const monthlyInterestRate = interestRate / 12 / 100;
   const rate = Math.pow(1 + monthlyInterestRate, numberOfMonths);
@@ -23,7 +23,7 @@ export const getPrePaymentEmiPlan = (inputs) => {
   let payments = [];
   for (let index = 0; index < numberOfMonths; index++) {
     //Increasing the EMI by the user given rate starting off from second year
-    if (emiHikeRate.enabled && index !== 0 && index % 12 === 0) {
+    if (emiHikeRate && index !== 0 && index % 12 === 0) {
       emi += emi * (emiHikeRate.value / 100);
     }
 
@@ -34,17 +34,17 @@ export const getPrePaymentEmiPlan = (inputs) => {
       : emi - interestComponent;
     loanRemaining = isLastEmi ? 0 : loanRemaining - pricipalComponent;
 
-    let prepaymentAmount = 0;
-    if (prepayment.enabled) {
+    let regularPrepaymentAmount = 0;
+    if (regularPrepayment) {
       const yearly = index !== 0 && (index + 1) % 12 === 0;
       const quarterly = index !== 0 && (index + 1) % 3 === 0;
       if (
-        (prepayment.interval === 'year' && yearly) ||
-        (prepayment.interval === 'quarter' && quarterly) ||
-        prepayment.interval === 'month'
+        (regularPrepayment.interval === 'year' && yearly) ||
+        (regularPrepayment.interval === 'quarter' && quarterly) ||
+        regularPrepayment.interval === 'month'
       ) {
-        loanRemaining -= prepayment.amount;
-        prepaymentAmount = prepayment.amount;
+        loanRemaining -= regularPrepayment.amount;
+        regularPrepaymentAmount = regularPrepayment.amount;
       }
     }
 
@@ -54,14 +54,14 @@ export const getPrePaymentEmiPlan = (inputs) => {
       pricipalComponent: Math.round(pricipalComponent),
       interestComponent: Math.round(interestComponent),
       emi: Math.round(pricipalComponent + interestComponent),
-      prepaymentAmount: prepaymentAmount,
+      regularPrepaymentAmount,
       loanRemaining: Math.round(loanRemaining),
     });
   }
   payments = payments.filter((payment) => payment.emi > 0);
 
   return {
-    payments,
+    payments: groupPaymentsByYear(payments),
     numberOfInstallments: payments.length,
     totalInterest: payments.reduce(
       (acc, curr) => acc + curr.interestComponent,
@@ -106,7 +106,7 @@ export const getRegularEmiPlan = (inputs) => {
   payments = payments.filter((payment) => payment.emi > 0);
 
   return {
-    payments,
+    payments: groupPaymentsByYear(payments),
     numberOfInstallments: payments.length,
     totalInterest: payments.reduce(
       (acc, curr) => acc + curr.interestComponent,
