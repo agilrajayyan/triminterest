@@ -67,6 +67,7 @@ export const getAcceleratedEmiPlan = (inputs) => {
       (acc, curr) => acc + curr.interestComponent,
       0
     ),
+    totalPrincipal: loanAmount,
   };
 };
 
@@ -112,6 +113,7 @@ export const getRegularEmiPlan = (inputs) => {
       (acc, curr) => acc + curr.interestComponent,
       0
     ),
+    totalPrincipal: loanAmount,
   };
 };
 

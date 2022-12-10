@@ -13,6 +13,9 @@ import {
   getAcceleratedEmiPlan,
   getRegularEmiPlan,
 } from './../../utils/helper';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const acceleratedEmiReducer = (state, action) => {
   switch (action.type) {
@@ -137,17 +140,48 @@ function EmiPlans(props) {
     } months`;
   };
 
+  const regularEmiChartData = {
+    labels: ['Principal', 'Interest'],
+    datasets: [
+      {
+        data: [regularEmiPlan.totalPrincipal, regularEmiPlan.totalInterest],
+        backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
+      },
+    ],
+  };
+
+  const accEmiChartData = {
+    labels: ['Principal', 'Interest'],
+    datasets: [
+      {
+        data: [
+          acceleratedEmi.plan?.totalPrincipal,
+          acceleratedEmi.plan?.totalInterest,
+        ],
+        backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
+      },
+    ],
+  };
+
   return (
     <div>
       <section
         className={`${classes.emi_summary_container} ${shared.flex_h} ${shared.justify_center}`}
       >
-        {/* Regular EMI plan */}
-        <div className={classes.regular_emi}>
-          <EmiList emiPlan={regularEmiPlan} prepaymentEnabled={false} />
+        <div>
+          <div className={classes.doughtnut_chart}>
+            <Doughnut data={regularEmiChartData} />
+          </div>
+          {/* Regular EMI plan */}
+          <div className={classes.regular_emi}>
+            <EmiList emiPlan={regularEmiPlan} prepaymentEnabled={false} />
+          </div>
         </div>
         {/* Accelerated EMI plan */}
         <Card>
+          <div className={classes.doughtnut_chart}>
+            <Doughnut data={accEmiChartData} />
+          </div>
           <CardActions>
             <div className={classes.additional_payments}>
               <section className={classes.benefits_container}>

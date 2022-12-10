@@ -13,3 +13,10 @@
 .benefits_container {
   margin-bottom: 20px;
 }
+
+.doughtnut_chart {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  margin: 0 auto;
+}
