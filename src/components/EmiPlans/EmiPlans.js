@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect, useReducer, useContext } from 'react';
 import classes from './EmiPlans.module.css';
 import shared from '../../styles.module.css';
 import EmiList from './EmiList/EmiList';
@@ -10,11 +10,13 @@ import Card from '@mui/material/Card';
 import AcceleratedPlanParams from './AcceleratedPlanParams/AcceleratedPlanParams';
 import {
   formatNumber,
+  formatCurrency,
   getAcceleratedEmiPlan,
   getRegularEmiPlan,
 } from './../../utils/helper';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { UserPreferenceContext } from './../../utils/UserPreferenceContext';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const acceleratedEmiReducer = (state, action) => {
@@ -73,6 +75,7 @@ function EmiPlans(props) {
     emiHikeRate: null,
     regularPrepayment: null,
   });
+  const userPreference = useContext(UserPreferenceContext);
 
   const accParamsChangeHandler = (eventData) => {
     const { interestRate, numberOfYears, loanAmount, emiStartDate } =
@@ -123,7 +126,11 @@ function EmiPlans(props) {
         acceleratedEmi.plan &&
         acceleratedEmi.plan.totalInterest) ||
       0;
-    return formatNumber(regularEmiInterest - acceleratedEmiInterest);
+    return formatCurrency(
+      regularEmiInterest - acceleratedEmiInterest,
+      userPreference.locale,
+      userPreference.currency
+    );
   };
 
   const getInstallmentsReducedBy = () => {
@@ -178,7 +185,7 @@ function EmiPlans(props) {
           </div>
         </div>
         {/* Accelerated EMI plan */}
-        <Card>
+        <Card style={{ background: '#f1f8fe' }}>
           <div className={classes.doughtnut_chart}>
             <Doughnut data={accEmiChartData} />
           </div>

@@ -157,3 +157,11 @@ export const getNthPaymentDate = (startDate, installmentNumber) => {
 export const formatNumber = (number) => {
   return new Intl.NumberFormat('en-IN').format(number);
 };
+
+export const formatCurrency = (number, locale, currencyCode) => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currencyCode,
+    roundingMode: 'trunc',
+  }).format(number);
+};

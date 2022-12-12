@@ -1,0 +1,7 @@
+.header_container {
+  background: #f1f8fe;
+  display: flex;
+  gap: 20px;
+  justify-content: end;
+  padding: 20px;
+}

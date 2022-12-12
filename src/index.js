@@ -3,6 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getFirestore } from 'firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCFY2AiOiV9jTaHml9s7TC8IM2BRFgZrVk',
+  authDomain: 'slayinterest.firebaseapp.com',
+  projectId: 'slayinterest',
+  storageBucket: 'slayinterest.appspot.com',
+  messagingSenderId: '88321934137',
+  appId: '1:88321934137:web:9d65f52a357dea14351ee8',
+  measurementId: 'G-TQWYBM5PSG',
+};
+const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
+export const db = getFirestore(app);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
