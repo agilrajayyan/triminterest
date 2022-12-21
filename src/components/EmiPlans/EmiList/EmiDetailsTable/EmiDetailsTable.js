@@ -1,17 +1,18 @@
 import classes from './EmiDetailsTable.module.css';
 import Typography from '@mui/material/Typography';
 import { formatNumber, getMonthByIndex } from '../../../../utils/helper';
-import TextField from '@mui/material/TextField';
-import { useEffect, useState } from 'react';
 
 function EmiDetailsTable(props) {
   const tableHeaderCell = `${classes.table_header_cell}`;
+  const borderClass = props.prepaymentEnabled
+    ? classes.row_light
+    : classes.row_dark;
 
   return (
     <table className={`${classes.table} ${props.classes}`}>
       <thead>
-        <tr>
-          <th className={tableHeaderCell}>
+        <tr className={borderClass}>
+          <th className={classes.month_cell}>
             <Typography variant="subtitle2">Month</Typography>
           </th>
           <th className={tableHeaderCell}>
@@ -34,61 +35,37 @@ function EmiDetailsTable(props) {
         </tr>
       </thead>
       <tbody>
-        {props.payments?.map((elem, index) => {
+        {props.payments?.map((elem) => {
           return (
-            <tr key={elem.loanRemaining}>
-              <td
-                className={`${classes.table_cell} ${
-                  index % 2 !== 0 ? classes.dark_bg : ''
-                }`}
-              >
+            <tr key={elem.loanRemaining} className={borderClass}>
+              <td className={classes.month_cell}>
                 <Typography variant="body2">
                   {getMonthByIndex(elem.paymentDate.getMonth())}
                 </Typography>
               </td>
-              <td
-                className={`${classes.table_cell} ${
-                  index % 2 !== 0 ? classes.dark_bg : ''
-                }`}
-              >
+              <td className={classes.table_cell}>
                 <Typography variant="body2">
                   {formatNumber(elem.emi)}
                 </Typography>
               </td>
-              <td
-                className={`${classes.table_cell} ${
-                  index % 2 !== 0 ? classes.dark_bg : ''
-                }`}
-              >
+              <td className={classes.table_cell}>
                 <Typography variant="body2">
                   {formatNumber(elem.pricipalComponent)}
                 </Typography>
               </td>
-              <td
-                className={`${classes.table_cell} ${
-                  index % 2 !== 0 ? classes.dark_bg : ''
-                }`}
-              >
+              <td className={classes.table_cell}>
                 <Typography variant="body2">
                   {formatNumber(elem.interestComponent)}
                 </Typography>
               </td>
               {props.prepaymentEnabled && (
-                <td
-                  className={`${classes.table_cell} ${
-                    index % 2 !== 0 ? classes.dark_bg : ''
-                  }`}
-                >
+                <td className={classes.table_cell}>
                   <Typography variant="body2">
                     {formatNumber(elem.regularPrepaymentAmount)}
                   </Typography>
                 </td>
               )}
-              <td
-                className={`${classes.table_cell} ${
-                  index % 2 !== 0 ? classes.dark_bg : ''
-                }`}
-              >
+              <td className={classes.table_cell}>
                 <Typography variant="body2">
                   {formatNumber(elem.loanRemaining)}
                 </Typography>

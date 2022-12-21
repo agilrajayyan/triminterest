@@ -1,4 +1,8 @@
 .inputs_container {
   max-width: 1000px;
-  margin: 100px auto;
+  margin: 60px auto;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 15px;
 }

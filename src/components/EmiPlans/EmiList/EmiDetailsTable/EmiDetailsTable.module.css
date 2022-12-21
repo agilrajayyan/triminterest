@@ -1,5 +1,7 @@
 .table {
   border-spacing: 5px;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 .table_header_cell,
@@ -9,19 +11,27 @@
 
 .table_header_cell {
   text-align: end;
-  background: #e4e4e7;
+  /* background: #e4e4e7; */
 }
 
 .table_cell {
   text-align: end;
 }
 
+.month_cell {
+  text-align: start;
+}
+
 .month_column_cell {
   text-align: start;
   padding: 10px 10px;
   background: #e4e4e7;
+  /* background: #e4e4e7; */
 }
 
-.dark_bg {
-  background: #e4e4e7;
+.row_light {
+  border-bottom: 1px solid #eef4ed1f;
+}
+.row_dark {
+  border-bottom: 1px solid #e0e0e0;
 }

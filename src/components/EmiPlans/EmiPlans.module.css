@@ -1,9 +1,23 @@
 .emi_summary_container {
   gap: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .regular_emi {
   margin-top: 64px;
+}
+
+.acc_emi_plan_container {
+  background: linear-gradient(
+    90deg,
+    hsla(213, 72%, 16%, 1) 0%,
+    hsla(215, 66%, 22%, 1) 100%
+  );
+  color: #e5effb !important;
+  padding-top: 25px;
+  border-radius: 40px !important;
 }
 
 .additional_payments {
@@ -19,4 +33,8 @@
   height: 300px;
   width: 300px;
   margin: 0 auto;
+}
+
+.card_content {
+  padding: 16px 24px;
 }

@@ -1,10 +1,10 @@
 import Typography from '@mui/material/Typography';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import EmiDetailsTable from './EmiDetailsTable/EmiDetailsTable';
 import classes from './EmiList.module.css';
 import shared from '../../../styles.module.css';
 import { useState, useEffect } from 'react';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function EmiList(props) {
   const [emiPlan, setEmiPlan] = useState([]);
@@ -54,7 +54,7 @@ function EmiList(props) {
         {emiPlan?.map((yearlyDetails) => {
           return (
             <div key={yearlyDetails.year}>
-              <div className={`${shared.flex_h} ${shared.align_basline}`}>
+              <div className={classes.emi_list_header}>
                 {expandOrShrink(yearlyDetails.year, yearlyDetails.detailedView)}
                 <Typography
                   variant="h4"

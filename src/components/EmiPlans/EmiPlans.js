@@ -170,14 +170,33 @@ function EmiPlans(props) {
     ],
   };
 
+  const options = {
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+      },
+    },
+    borderWidth: 0,
+  };
+
   return (
     <div>
-      <section
-        className={`${classes.emi_summary_container} ${shared.flex_h} ${shared.justify_center}`}
-      >
-        <div>
+      <section className={classes.emi_summary_container}>
+        <div
+          style={{
+            paddingTop: '25px',
+          }}
+        >
+          <Typography
+            variant="h5"
+            align="center"
+            style={{ marginBottom: '20px' }}
+          >
+            Regular EMI
+          </Typography>
           <div className={classes.doughtnut_chart}>
-            <Doughnut data={regularEmiChartData} />
+            <Doughnut data={regularEmiChartData} options={options} />
           </div>
           {/* Regular EMI plan */}
           <div className={classes.regular_emi}>
@@ -185,9 +204,16 @@ function EmiPlans(props) {
           </div>
         </div>
         {/* Accelerated EMI plan */}
-        <Card style={{ background: '#f1f8fe' }}>
+        <Card className={classes.acc_emi_plan_container}>
+          <Typography
+            variant="h5"
+            align="center"
+            style={{ paddingBottom: '20px' }}
+          >
+            Accelerated EMI
+          </Typography>
           <div className={classes.doughtnut_chart}>
-            <Doughnut data={accEmiChartData} />
+            <Doughnut data={accEmiChartData} options={options} />
           </div>
           <CardActions>
             <div className={classes.additional_payments}>
@@ -206,7 +232,7 @@ function EmiPlans(props) {
               <AcceleratedPlanParams onChangeParams={accParamsChangeHandler} />
             </div>
           </CardActions>
-          <CardContent>
+          <CardContent className={classes.card_content}>
             <EmiList emiPlan={acceleratedEmi.plan} prepaymentEnabled={true} />
           </CardContent>
         </Card>

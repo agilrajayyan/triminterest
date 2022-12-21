@@ -1,3 +1,10 @@
 .arrow_icon {
   cursor: pointer;
+  margin-left: -10px;
+  font-size: 36px !important;
+  margin-top: 2px;
+}
+
+.emi_list_header {
+  display: flex;
 }

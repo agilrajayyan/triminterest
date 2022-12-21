@@ -10,8 +10,13 @@ import FormControl from '@mui/material/FormControl';
 import { useState, useEffect } from 'react';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Tooltip from '@mui/material/Tooltip';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function AcceleratedPlanParams(props) {
   const [emiHikeRate, setEmiHikeRate] = useState({ enabled: true, value: 5 });
@@ -29,100 +34,104 @@ function AcceleratedPlanParams(props) {
   }, [emiHikeRate, regularPrepayment]);
 
   return (
-    <div className={classes.params_container}>
-      <div className={classes.prepayment_condition}>
-        <Checkbox
-          checked={emiHikeRate.enabled}
-          onChange={(event) =>
-            setEmiHikeRate((prevEmiHikeRate) => {
-              return {
-                ...prevEmiHikeRate,
-                enabled: event.target.checked,
-              };
-            })
-          }
-          inputProps={{ 'aria-label': 'controlled' }}
-        />
-        <FormControl variant="standard" sx={{ width: '10ch' }}>
-          <Input
-            id="standard-adornment-weight"
-            value={emiHikeRate.value}
-            endAdornment={<InputAdornment position="start">%</InputAdornment>}
+    <ThemeProvider theme={darkTheme}>
+      <div className={classes.params_container}>
+        <div className={classes.prepayment_condition}>
+          <Checkbox
+            checked={emiHikeRate.enabled}
             onChange={(event) =>
               setEmiHikeRate((prevEmiHikeRate) => {
                 return {
                   ...prevEmiHikeRate,
-                  value: Number(event.target.value),
+                  enabled: event.target.checked,
                 };
               })
             }
-            inputProps={{
-              'aria-label': 'emiHikeRate',
-            }}
+            inputProps={{ 'aria-label': 'controlled' }}
           />
-        </FormControl>
-        <Typography variant="body2">increase in EMI every year</Typography>
-      </div>
-      <div className={classes.prepayment_condition}>
-        <Checkbox
-          checked={regularPrepayment.enabled}
-          onChange={(event) => {
-            const checked = event.target.checked;
-            setRegularPrepayment((prevRegularPrepayment) => {
-              return {
-                ...prevRegularPrepayment,
-                enabled: checked,
-              };
-            });
-          }}
-          inputProps={{ 'aria-label': 'controlled' }}
-        />
-        <FormControl sx={{ width: '10ch' }}>
-          <Input
-            id="standard-adornment-weight"
-            value={regularPrepayment.amount}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            onChange={(event) =>
+          <FormControl variant="standard" sx={{ width: '10ch' }}>
+            <Input
+              id="standard-adornment-weight"
+              value={emiHikeRate.value}
+              endAdornment={<InputAdornment position="start">%</InputAdornment>}
+              onChange={(event) =>
+                setEmiHikeRate((prevEmiHikeRate) => {
+                  return {
+                    ...prevEmiHikeRate,
+                    value: Number(event.target.value),
+                  };
+                })
+              }
+              inputProps={{
+                'aria-label': 'emiHikeRate',
+              }}
+            />
+          </FormControl>
+          <Typography variant="body2">increase in EMI every year</Typography>
+        </div>
+        <div className={classes.prepayment_condition}>
+          <Checkbox
+            checked={regularPrepayment.enabled}
+            onChange={(event) => {
+              const checked = event.target.checked;
               setRegularPrepayment((prevRegularPrepayment) => {
                 return {
                   ...prevRegularPrepayment,
-                  amount: Number(event.target.value),
+                  enabled: checked,
                 };
-              })
-            }
-            aria-describedby="standard-weight-helper-text"
-            inputProps={{
-              'aria-label': 'weight',
+              });
             }}
+            inputProps={{ 'aria-label': 'controlled' }}
           />
-        </FormControl>
-        <Typography variant="body2">additional payment every year</Typography>
-        <FormControl variant="standard">
-          <Select
-            id="demo-select-small"
-            value={regularPrepayment.interval}
-            onChange={(event) =>
-              setRegularPrepayment((prevRegularPrepayment) => {
-                return {
-                  ...prevRegularPrepayment,
-                  interval: event.target.value,
-                };
-              })
-            }
+          <FormControl sx={{ width: '10ch' }}>
+            <Input
+              id="standard-adornment-weight"
+              value={regularPrepayment.amount}
+              startAdornment={
+                <InputAdornment position="start">$</InputAdornment>
+              }
+              onChange={(event) =>
+                setRegularPrepayment((prevRegularPrepayment) => {
+                  return {
+                    ...prevRegularPrepayment,
+                    amount: Number(event.target.value),
+                  };
+                })
+              }
+              aria-describedby="standard-weight-helper-text"
+              inputProps={{
+                'aria-label': 'weight',
+              }}
+            />
+          </FormControl>
+          <Typography variant="body2">additional payment every year</Typography>
+          <FormControl variant="standard">
+            <Select
+              id="demo-select-small"
+              value={regularPrepayment.interval}
+              onChange={(event) =>
+                setRegularPrepayment((prevRegularPrepayment) => {
+                  return {
+                    ...prevRegularPrepayment,
+                    interval: event.target.value,
+                  };
+                })
+              }
+            >
+              <MenuItem value={'year'}>Year</MenuItem>
+              <MenuItem value={'quarter'}>Quarter</MenuItem>
+              <MenuItem value={'month'}>Month</MenuItem>
+            </Select>
+          </FormControl>
+          <Tooltip
+            title="Make sure to read the terms and conditions of your loan. Some loan schemes may not let the customer make a prepayment without additional charges."
+            placement="right-start"
           >
-            <MenuItem value={'year'}>Year</MenuItem>
-            <MenuItem value={'quarter'}>Quarter</MenuItem>
-            <MenuItem value={'month'}>Month</MenuItem>
-          </Select>
-        </FormControl>
-        <Tooltip
-          title="Make sure to read the terms and conditions of your loan. Some loan schemes may not let the customer make a prepayment without additional charges."
-          placement="right-start"
-        >
-          <InfoOutlinedIcon sx={{ cursor: 'pointer' }}></InfoOutlinedIcon>
-        </Tooltip>
+            <InfoOutlinedIcon sx={{ cursor: 'pointer' }}></InfoOutlinedIcon>
+          </Tooltip>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
