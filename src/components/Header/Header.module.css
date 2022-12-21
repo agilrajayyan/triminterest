@@ -1,7 +1,13 @@
 .header_container {
   background: #0b2545;
   display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.inputs_container {
+  background: #0b2545;
+  display: flex;
   gap: 20px;
   justify-content: end;
-  padding: 20px;
 }

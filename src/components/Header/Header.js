@@ -3,16 +3,16 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import classes from './Header.module.css';
-import { db } from '../../index';
-import { collection, getDocs } from 'firebase/firestore';
 import InputAdornment from '@mui/material/InputAdornment';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
 });
+const languages = ['en-US', 'de-DE', 'it-IT'];
 
 function Header(props) {
   const [currencies, setCurrencies] = useState([]);
@@ -23,14 +23,10 @@ function Header(props) {
   });
   const [locale, setLocale] = useState('en-US');
 
-  const languages = ['en-US', 'de-DE', 'it-IT'];
-
   const fetchCurrencies = async () => {
-    const querySnapshot = await getDocs(collection(db, 'currencies'));
-    const response = querySnapshot.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
-    });
-    setCurrencies(response);
+    const response = await fetch('currencies.json');
+    const currenciesList = await response.json();
+    setCurrencies(currenciesList.data);
   };
 
   useEffect(() => {
@@ -43,83 +39,88 @@ function Header(props) {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <div className={classes.header_container}>
-        <Autocomplete
-          id="currency-auto-complete"
-          sx={{ width: 250 }}
-          value={currency}
-          onChange={(event, newValue) => setCurrency(newValue)}
-          options={currencies}
-          autoHighlight
-          getOptionLabel={(option) => option.name}
-          renderOption={(props, option) => (
-            <Box
-              component="li"
-              sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
-              {...props}
-            >
-              <img
-                loading="lazy"
-                height="20"
-                width="30"
-                src={option.flag}
-                alt={option.name}
-              />
-              {option.code} {option.name}
-            </Box>
-          )}
-          renderInput={(params) => (
-            <span style={{ display: 'flex' }}>
+      <section className={classes.header_container}>
+        <Typography variant="h5" gutterBottom style={{ color: '#fff' }}>
+          triminterest
+        </Typography>
+        <div className={classes.inputs_container}>
+          <Autocomplete
+            id="currency-auto-complete"
+            sx={{ width: 250 }}
+            value={currency}
+            onChange={(event, newValue) => setCurrency(newValue)}
+            options={currencies}
+            autoHighlight
+            getOptionLabel={(option) => option.name}
+            renderOption={(props, option) => (
+              <Box
+                component="li"
+                sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+                {...props}
+              >
+                <img
+                  loading="lazy"
+                  height="20"
+                  width="30"
+                  src={option.flag}
+                  alt={option.name}
+                />
+                {option.code} {option.name}
+              </Box>
+            )}
+            renderInput={(params) => (
+              <span style={{ display: 'flex' }}>
+                <TextField
+                  {...params}
+                  inputProps={{
+                    ...params.inputProps,
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <img
+                          loading="lazy"
+                          height="20"
+                          width="30"
+                          styles={{ padding: '10px 0' }}
+                          src={currency.flag}
+                          alt={currency.name}
+                        />
+                      </InputAdornment>
+                    ),
+                  }}
+                  variant="standard"
+                />
+              </span>
+            )}
+          />
+          <Autocomplete
+            id="locale-auto-complete"
+            sx={{ width: 200 }}
+            value={locale}
+            onChange={(event, newValue) => setLocale(newValue)}
+            options={languages}
+            autoHighlight
+            getOptionLabel={(option) => option}
+            renderOption={(props, option) => (
+              <Box
+                component="li"
+                sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+                {...props}
+              >
+                {option}
+              </Box>
+            )}
+            renderInput={(params) => (
               <TextField
                 {...params}
+                variant="standard"
                 inputProps={{
                   ...params.inputProps,
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <img
-                        loading="lazy"
-                        height="20"
-                        width="30"
-                        styles={{ padding: '10px 0' }}
-                        src={currency.flag}
-                        alt={currency.name}
-                      />
-                    </InputAdornment>
-                  ),
                 }}
-                variant="standard"
               />
-            </span>
-          )}
-        />
-        <Autocomplete
-          id="locale-auto-complete"
-          sx={{ width: 200 }}
-          value={locale}
-          onChange={(event, newValue) => setLocale(newValue)}
-          options={languages}
-          autoHighlight
-          getOptionLabel={(option) => option}
-          renderOption={(props, option) => (
-            <Box
-              component="li"
-              sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
-              {...props}
-            >
-              {option}
-            </Box>
-          )}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="standard"
-              inputProps={{
-                ...params.inputProps,
-              }}
-            />
-          )}
-        />
-      </div>
+            )}
+          />
+        </div>
+      </section>
     </ThemeProvider>
   );
 }
