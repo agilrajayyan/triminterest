@@ -9,5 +9,11 @@
   background: #0b2545;
   display: flex;
   gap: 20px;
-  justify-content: end;
+  justify-content: flex-end;
+}
+
+@media (width <= 900px) {
+  .inputs_container {
+    display: none;
+  }
 }

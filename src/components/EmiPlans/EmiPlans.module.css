@@ -5,6 +5,16 @@
   align-items: flex-start;
 }
 
+@media (width <= 1000px) {
+  .emi_summary_container {
+    gap: 50px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .regular_emi {
   margin-top: 64px;
 }

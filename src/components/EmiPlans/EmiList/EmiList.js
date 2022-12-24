@@ -56,17 +56,13 @@ function EmiList(props) {
             <div key={yearlyDetails.year}>
               <div className={classes.emi_list_header}>
                 {expandOrShrink(yearlyDetails.year, yearlyDetails.detailedView)}
-                <Typography
-                  variant="h4"
-                  gutterBottom
-                  className={shared.margin_bottom_1}
-                >
+                <Typography variant="h4" gutterBottom>
                   {yearlyDetails.year}
                 </Typography>
               </div>
               {yearlyDetails.detailedView && (
                 <EmiDetailsTable
-                  classes={shared.margin_bottom_2}
+                  classes={classes.emi_details_table}
                   payments={yearlyDetails.payments}
                   prepaymentEnabled={props.prepaymentEnabled}
                 />

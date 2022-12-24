@@ -87,7 +87,6 @@ function Header(props) {
                       </InputAdornment>
                     ),
                   }}
-                  variant="standard"
                 />
               </span>
             )}
@@ -112,7 +111,6 @@ function Header(props) {
             renderInput={(params) => (
               <TextField
                 {...params}
-                variant="standard"
                 inputProps={{
                   ...params.inputProps,
                 }}

@@ -31,7 +31,6 @@ function EmiParameters(props) {
         type="number"
         id="outlined-start-adornment"
         sx={{ m: 1, width: '25ch' }}
-        variant="standard"
         value={loanAmount}
         onChange={(event) => setLoanAmount(event.target.value)}
         InputProps={{
@@ -43,7 +42,6 @@ function EmiParameters(props) {
         type="number"
         id="outlined-end-adornment"
         sx={{ m: 1, width: '25ch' }}
-        variant="standard"
         value={interestRate}
         onChange={(event) => seInterestRate(Number(event.target.value))}
         InputProps={{
@@ -55,7 +53,6 @@ function EmiParameters(props) {
         type="number"
         id="outlined-end-adornment"
         sx={{ m: 1, width: '25ch' }}
-        variant="standard"
         value={numberOfYears}
         onChange={(event) => setNumberOfYears(Number(event.target.value))}
         InputProps={{
@@ -66,7 +63,6 @@ function EmiParameters(props) {
         <DatePicker
           views={['year', 'month']}
           label="EMI starts on"
-          variant="standard"
           value={emiStartdate}
           onChange={(value) => setEmiStartdate(value)}
           renderInput={(params) => <TextField {...params} helperText={null} />}

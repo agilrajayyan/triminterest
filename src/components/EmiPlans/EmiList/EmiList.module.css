@@ -7,4 +7,9 @@
 
 .emi_list_header {
   display: flex;
+  margin-left: 10px;
+}
+
+.emi_details_table {
+  margin-bottom: 20px;
 }

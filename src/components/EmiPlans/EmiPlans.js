@@ -181,63 +181,59 @@ function EmiPlans(props) {
   };
 
   return (
-    <div>
-      <section className={classes.emi_summary_container}>
-        <div
-          style={{
-            paddingTop: '25px',
-          }}
+    <section className={classes.emi_summary_container}>
+      <div
+        style={{
+          paddingTop: '25px',
+        }}
+      >
+        <Typography
+          variant="h5"
+          align="center"
+          style={{ marginBottom: '20px' }}
         >
-          <Typography
-            variant="h5"
-            align="center"
-            style={{ marginBottom: '20px' }}
-          >
-            Regular EMI
-          </Typography>
-          <div className={classes.doughtnut_chart}>
-            <Doughnut data={regularEmiChartData} options={options} />
-          </div>
-          {/* Regular EMI plan */}
-          <div className={classes.regular_emi}>
-            <EmiList emiPlan={regularEmiPlan} prepaymentEnabled={false} />
-          </div>
+          Regular EMI
+        </Typography>
+        <div className={classes.doughtnut_chart}>
+          <Doughnut data={regularEmiChartData} options={options} />
         </div>
-        {/* Accelerated EMI plan */}
-        <Card className={classes.acc_emi_plan_container}>
-          <Typography
-            variant="h5"
-            align="center"
-            style={{ paddingBottom: '20px' }}
-          >
-            Accelerated EMI
-          </Typography>
-          <div className={classes.doughtnut_chart}>
-            <Doughnut data={accEmiChartData} options={options} />
+        {/* Regular EMI plan */}
+        <div className={classes.regular_emi}>
+          <EmiList emiPlan={regularEmiPlan} prepaymentEnabled={false} />
+        </div>
+      </div>
+      {/* Accelerated EMI plan */}
+      <Card className={classes.acc_emi_plan_container}>
+        <Typography
+          variant="h5"
+          align="center"
+          style={{ paddingBottom: '20px' }}
+        >
+          Accelerated EMI
+        </Typography>
+        <div className={classes.doughtnut_chart}>
+          <Doughnut data={accEmiChartData} options={options} />
+        </div>
+        <CardActions>
+          <div className={classes.additional_payments}>
+            <section className={classes.benefits_container}>
+              <Typography variant="caption">You could save</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+                {getInterestSaved()}
+              </Typography>
+              <Typography variant="caption">Installments reduced by</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+                {getInstallmentsReducedBy()}
+              </Typography>
+            </section>
+            <AcceleratedPlanParams onChangeParams={accParamsChangeHandler} />
           </div>
-          <CardActions>
-            <div className={classes.additional_payments}>
-              <section className={classes.benefits_container}>
-                <Typography variant="caption">You could save</Typography>
-                <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-                  {getInterestSaved()}
-                </Typography>
-                <Typography variant="caption">
-                  Installments reduced by
-                </Typography>
-                <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-                  {getInstallmentsReducedBy()}
-                </Typography>
-              </section>
-              <AcceleratedPlanParams onChangeParams={accParamsChangeHandler} />
-            </div>
-          </CardActions>
-          <CardContent className={classes.card_content}>
-            <EmiList emiPlan={acceleratedEmi.plan} prepaymentEnabled={true} />
-          </CardContent>
-        </Card>
-      </section>
-    </div>
+        </CardActions>
+        <CardContent className={classes.card_content}>
+          <EmiList emiPlan={acceleratedEmi.plan} prepaymentEnabled={true} />
+        </CardContent>
+      </Card>
+    </section>
   );
 }
 
