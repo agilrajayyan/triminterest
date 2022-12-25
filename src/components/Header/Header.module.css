@@ -1,8 +1,9 @@
 .header_container {
   background: #0b2545;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  align-items: baseline;
 }
 
 .inputs_container {

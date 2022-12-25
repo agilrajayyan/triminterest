@@ -72,6 +72,7 @@ function Header(props) {
               <span style={{ display: 'flex' }}>
                 <TextField
                   {...params}
+                  label="Currency"
                   inputProps={{
                     ...params.inputProps,
                     startAdornment: (
@@ -111,6 +112,7 @@ function Header(props) {
             renderInput={(params) => (
               <TextField
                 {...params}
+                label="Language"
                 inputProps={{
                   ...params.inputProps,
                 }}

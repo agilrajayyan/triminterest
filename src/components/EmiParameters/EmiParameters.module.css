@@ -1,7 +1,18 @@
 .inputs_container {
-  max-width: 1000px;
-  margin: 60px auto;
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
+  margin: 60px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (width <= 840px) {
+  .inputs_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 490px) {
+  .inputs_container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

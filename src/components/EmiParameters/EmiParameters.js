@@ -30,7 +30,6 @@ function EmiParameters(props) {
         label="Loan Amount"
         type="number"
         id="outlined-start-adornment"
-        sx={{ m: 1, width: '25ch' }}
         value={loanAmount}
         onChange={(event) => setLoanAmount(event.target.value)}
         InputProps={{
@@ -41,7 +40,6 @@ function EmiParameters(props) {
         label="Interest rate"
         type="number"
         id="outlined-end-adornment"
-        sx={{ m: 1, width: '25ch' }}
         value={interestRate}
         onChange={(event) => seInterestRate(Number(event.target.value))}
         InputProps={{
@@ -52,7 +50,6 @@ function EmiParameters(props) {
         label="Loan Tenure"
         type="number"
         id="outlined-end-adornment"
-        sx={{ m: 1, width: '25ch' }}
         value={numberOfYears}
         onChange={(event) => setNumberOfYears(Number(event.target.value))}
         InputProps={{
