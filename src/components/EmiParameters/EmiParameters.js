@@ -4,15 +4,18 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import classes from './EmiParameters.module.css';
-import Button from '@mui/material/Button';
+import { UserPreferenceContext } from '../../utils/UserPreferenceContext';
+import { getCurrencySymbol } from '../../utils/helper';
 
 function EmiParameters(props) {
   const [loanAmount, setLoanAmount] = useState(4800000);
   const [interestRate, seInterestRate] = useState(8);
   const [numberOfYears, setNumberOfYears] = useState(25);
   const [emiStartdate, setEmiStartdate] = useState(dayjs(new Date()));
+  const userPreference = useContext(UserPreferenceContext);
+  const { locale, currency } = userPreference;
 
   useEffect(() => {
     props.onChangeEmiParams({
@@ -32,7 +35,11 @@ function EmiParameters(props) {
         value={loanAmount}
         onChange={(event) => setLoanAmount(event.target.value)}
         InputProps={{
-          startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          startAdornment: (
+            <InputAdornment position="start">
+              {getCurrencySymbol(locale, currency)}
+            </InputAdornment>
+          ),
         }}
       />
       <TextField

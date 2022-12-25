@@ -154,8 +154,8 @@ export const getNthPaymentDate = (startDate, installmentNumber) => {
   return paymentDate;
 };
 
-export const formatNumber = (number) => {
-  return new Intl.NumberFormat('en-IN').format(number);
+export const formatNumber = (number, locale) => {
+  return new Intl.NumberFormat(locale).format(number);
 };
 
 export const formatCurrency = (number, locale, currencyCode) => {
@@ -164,4 +164,16 @@ export const formatCurrency = (number, locale, currencyCode) => {
     currency: currencyCode,
     roundingMode: 'trunc',
   }).format(number);
+};
+
+export const getCurrencySymbol = (locale, currency) => {
+  return (0)
+    .toLocaleString(locale, {
+      style: 'currency',
+      currency: currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    })
+    .replace(/\d/g, '')
+    .trim();
 };

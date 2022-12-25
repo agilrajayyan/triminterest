@@ -7,10 +7,12 @@ import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Tooltip from '@mui/material/Tooltip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { UserPreferenceContext } from '../../../utils/UserPreferenceContext';
+import { getCurrencySymbol } from '../../../utils/helper';
 
 const darkTheme = createTheme({
   palette: {
@@ -25,6 +27,8 @@ function AcceleratedPlanParams(props) {
     amount: 1000,
     interval: 'year',
   });
+  const userPreference = useContext(UserPreferenceContext);
+  const { locale, currency } = userPreference;
 
   useEffect(() => {
     props.onChangeParams({
@@ -88,7 +92,9 @@ function AcceleratedPlanParams(props) {
               id="standard-adornment-weight"
               value={regularPrepayment.amount}
               startAdornment={
-                <InputAdornment position="start">$</InputAdornment>
+                <InputAdornment position="start">
+                  {getCurrencySymbol(locale, currency)}
+                </InputAdornment>
               }
               onChange={(event) =>
                 setRegularPrepayment((prevRegularPrepayment) => {
