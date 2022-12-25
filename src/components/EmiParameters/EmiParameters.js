@@ -6,7 +6,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useState, useEffect } from 'react';
 import classes from './EmiParameters.module.css';
-import shared from '../../styles.module.css';
 import Button from '@mui/material/Button';
 
 function EmiParameters(props) {

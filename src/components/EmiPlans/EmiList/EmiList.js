@@ -1,7 +1,6 @@
 import Typography from '@mui/material/Typography';
 import EmiDetailsTable from './EmiDetailsTable/EmiDetailsTable';
 import classes from './EmiList.module.css';
-import shared from '../../../styles.module.css';
 import { useState, useEffect } from 'react';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';

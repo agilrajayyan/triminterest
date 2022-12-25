@@ -1,16 +1,16 @@
 .params_container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.62rem;
 }
 
 .prepayment_condition {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 0.62rem;
   align-items: center;
 }
 
 .custom_prepayment_switch {
-  margin-left: 5px;
+  margin-left: 0.31rem;
 }

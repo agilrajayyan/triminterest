@@ -1,6 +1,5 @@
 import { useState, useEffect, useReducer, useContext } from 'react';
 import classes from './EmiPlans.module.css';
-import shared from '../../styles.module.css';
 import EmiList from './EmiList/EmiList';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
@@ -182,15 +181,11 @@ function EmiPlans(props) {
 
   return (
     <section className={classes.emi_summary_container}>
-      <div
-        style={{
-          paddingTop: '25px',
-        }}
-      >
+      <div className={classes.regular_emi_container}>
         <Typography
           variant="h5"
           align="center"
-          style={{ marginBottom: '20px' }}
+          style={{ marginBottom: '1.25rem' }}
         >
           Regular EMI
         </Typography>
@@ -207,7 +202,7 @@ function EmiPlans(props) {
         <Typography
           variant="h5"
           align="center"
-          style={{ paddingBottom: '20px' }}
+          style={{ paddingBottom: '1.25rem' }}
         >
           Accelerated EMI
         </Typography>

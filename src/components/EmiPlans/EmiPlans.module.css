@@ -1,5 +1,5 @@
 .emi_summary_container {
-  gap: 50px;
+  gap: 3.12rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -7,16 +7,17 @@
 
 @media (width <= 1000px) {
   .emi_summary_container {
-    gap: 50px;
-    display: flex;
     flex-direction: column-reverse;
-    justify-content: center;
     align-items: center;
   }
 }
 
+.regular_emi_container {
+  padding-top: 1.56rem;
+}
+
 .regular_emi {
-  margin-top: 64px;
+  margin-top: 4rem;
 }
 
 .acc_emi_plan_container {
@@ -26,25 +27,25 @@
     hsla(215, 66%, 22%, 1) 100%
   );
   color: #e5effb !important;
-  padding-top: 25px;
-  border-radius: 40px !important;
+  padding-top: 1.56rem;
+  border-radius: 2.5rem !important;
 }
 
 .additional_payments {
-  margin: 30px;
+  margin: 1.87rem;
 }
 
 .benefits_container {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .doughtnut_chart {
   position: relative;
-  height: 300px;
-  width: 300px;
+  height: 18.75rem;
+  width: 18.75rem;
   margin: 0 auto;
 }
 
 .card_content {
-  padding: 16px 24px;
+  padding: 1rem 1.5rem;
 }

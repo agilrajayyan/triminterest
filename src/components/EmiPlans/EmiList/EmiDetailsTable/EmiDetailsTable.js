@@ -7,6 +7,7 @@ function EmiDetailsTable(props) {
   const borderClass = props.prepaymentEnabled
     ? classes.row_light
     : classes.row_dark;
+  // const userPreference = useContext(UserPreferenceContext);
 
   return (
     <table className={`${classes.table} ${props.classes}`}>

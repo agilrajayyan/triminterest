@@ -81,7 +81,7 @@ function Header(props) {
                           loading="lazy"
                           height="20"
                           width="30"
-                          styles={{ padding: '10px 0' }}
+                          styles={{ padding: '0.62rem 0' }}
                           src={currency.flag}
                           alt={currency.name}
                         />

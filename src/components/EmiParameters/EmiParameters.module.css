@@ -1,8 +1,8 @@
 .inputs_container {
-  margin: 60px 30px;
+  margin: 3.75rem 1.87rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 @media (width <= 840px) {
