@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -8,6 +8,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const darkTheme = createTheme({
   palette: {
@@ -24,6 +25,7 @@ function Header(props) {
     flag: 'https://flagcdn.com/us.svg',
   });
   const [locale, setLocale] = useState('en-US');
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const currencyInput = (
     <Autocomplete
@@ -47,7 +49,7 @@ function Header(props) {
             src={option.flag}
             alt={option.name}
           />
-          {option.code} {option.name}
+          {option.name} ({option.code})
         </Box>
       )}
       renderInput={(params) => (
@@ -113,15 +115,39 @@ function Header(props) {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <section className={classes.header_container}>
-        <Typography variant="h5" gutterBottom style={{ color: '#fff' }}>
-          triminterest
-        </Typography>
+      <header className={classes.header_container}>
+        <img
+          src="/logo.png"
+          className={classes.logo}
+          height="45"
+          alt="triminterest logo"
+        />
         <div className={classes.inputs_container}>
           {currencyInput}
           {localeInput}
         </div>
-      </section>
+        <MenuIcon
+          className={classes.menu_icon}
+          onClick={() => setIsDrawerOpen(true)}
+        />
+      </header>
+      <SwipeableDrawer anchor="right" open={isDrawerOpen} variant="temporary">
+        <Box role="presentation" className={classes.drawer_container}>
+          <div className={classes.drawer_title_container}>
+            <ArrowBackIcon
+              className={classes.back_icon}
+              onClick={() => setIsDrawerOpen(false)}
+            />
+            <Typography variant="h6" align="left">
+              Preferences
+            </Typography>
+          </div>
+          <div className={classes.drawer_inputs_container}>
+            {currencyInput}
+            {localeInput}
+          </div>
+        </Box>
+      </SwipeableDrawer>
     </ThemeProvider>
   );
 }

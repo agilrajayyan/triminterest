@@ -1,5 +1,4 @@
 import classes from './AcceleratedPlanParams.module.css';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
