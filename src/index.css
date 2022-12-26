@@ -6,42 +6,42 @@
 
 @media (width <= 520px) {
   html {
-    font-size: 15px;
+    font-size: 15.5px;
   }
 }
 
 @media (width <= 480px) {
   html {
-    font-size: 14px;
+    font-size: 14.5px;
   }
 }
 
 @media (width <= 440px) {
   html {
-    font-size: 13px;
+    font-size: 13.5px;
   }
 }
 
 @media (width <= 420px) {
   html {
-    font-size: 12px;
+    font-size: 12.5px;
   }
 }
 
 @media (width <= 390px) {
   html {
-    font-size: 11px;
+    font-size: 11.5px;
   }
 }
 
 @media (width <= 360px) {
   html {
-    font-size: 10px;
+    font-size: 10.8px;
   }
 }
 
-@media (width <= 330px) {
+@media (width <= 340px) {
   html {
-    font-size: 9px;
+    font-size: 10.4px;
   }
 }

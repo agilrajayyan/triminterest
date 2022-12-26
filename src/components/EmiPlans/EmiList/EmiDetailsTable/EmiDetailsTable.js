@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import classes from './EmiDetailsTable.module.css';
-import Typography from '@mui/material/Typography';
+import { Typography, Tooltip } from '@mui/material';
 import {
   formatNumber,
   getMonthByIndex,
@@ -62,31 +62,60 @@ function EmiDetailsTable(props) {
                 </Typography>
               </td>
               <td className={classes.table_cell}>
-                <Typography variant="body2">
-                  {formatNumber(elem.emi, locale)}
-                </Typography>
+                <Tooltip
+                  enterTouchDelay="0"
+                  title={formatNumber(elem.emi, locale, false)}
+                >
+                  <Typography variant="body2">
+                    {formatNumber(elem.emi, locale, true)}
+                  </Typography>
+                </Tooltip>
               </td>
               <td className={classes.table_cell}>
-                <Typography variant="body2">
-                  {formatNumber(elem.pricipalComponent, locale)}
-                </Typography>
+                <Tooltip
+                  enterTouchDelay="0"
+                  title={formatNumber(elem.pricipalComponent, locale, false)}
+                >
+                  <Typography variant="body2">
+                    {formatNumber(elem.pricipalComponent, locale, true)}
+                  </Typography>
+                </Tooltip>
               </td>
               <td className={classes.table_cell}>
-                <Typography variant="body2">
-                  {formatNumber(elem.interestComponent, locale)}
-                </Typography>
+                <Tooltip
+                  enterTouchDelay="0"
+                  title={formatNumber(elem.interestComponent, locale, false)}
+                >
+                  <Typography variant="body2">
+                    {formatNumber(elem.interestComponent, locale, true)}
+                  </Typography>
+                </Tooltip>
               </td>
               {props.prepaymentEnabled && (
                 <td className={classes.table_cell}>
-                  <Typography variant="body2">
-                    {formatNumber(elem.regularPrepaymentAmount, locale)}
-                  </Typography>
+                  <Tooltip
+                    enterTouchDelay="0"
+                    title={formatNumber(
+                      elem.regularPrepaymentAmount,
+                      locale,
+                      false
+                    )}
+                  >
+                    <Typography variant="body2">
+                      {formatNumber(elem.regularPrepaymentAmount, locale, true)}
+                    </Typography>
+                  </Tooltip>
                 </td>
               )}
               <td className={classes.table_cell}>
-                <Typography variant="body2">
-                  {formatNumber(elem.loanRemaining, locale)}
-                </Typography>
+                <Tooltip
+                  enterTouchDelay="0"
+                  title={formatNumber(elem.loanRemaining, locale, false)}
+                >
+                  <Typography variant="body2">
+                    {formatNumber(elem.loanRemaining, locale, true)}
+                  </Typography>
+                </Tooltip>
               </td>
             </tr>
           );
