@@ -131,7 +131,13 @@ function Header(props) {
           onClick={() => setIsDrawerOpen(true)}
         />
       </header>
-      <SwipeableDrawer anchor="right" open={isDrawerOpen} variant="temporary">
+      <SwipeableDrawer
+        anchor="right"
+        open={isDrawerOpen}
+        variant="temporary"
+        onClose={() => setIsDrawerOpen(false)}
+        onOpen={() => setIsDrawerOpen(true)}
+      >
         <Box role="presentation" className={classes.drawer_container}>
           <div className={classes.drawer_title_container}>
             <ArrowBackIcon

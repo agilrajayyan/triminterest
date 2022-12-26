@@ -1,0 +1,10 @@
+.footer {
+  margin-bottom: 1rem;
+}
+
+.favourite_icon {
+  filter: invert(8%) sepia(94%) saturate(4590%) hue-rotate(348deg)
+    brightness(125%) contrast(127%);
+  font-size: 1rem !important;
+  vertical-align: text-bottom !important;
+}
