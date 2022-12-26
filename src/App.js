@@ -14,21 +14,19 @@ function App() {
   });
 
   return (
-    <div>
+    <UserPreferenceContext.Provider value={userPreference}>
       <Header
         onChangePreference={(eventData) => setUserPreference(eventData)}
       />
-      <UserPreferenceContext.Provider value={userPreference}>
-        <main className={classes.main_container}>
-          <EmiParameters
-            onChangeEmiParams={(params) => {
-              setEmiParams(params);
-            }}
-          />
-          <EmiPlans emiParams={emiParams} />
-        </main>
-      </UserPreferenceContext.Provider>
-    </div>
+      <main className={classes.main_container}>
+        <EmiParameters
+          onChangeEmiParams={(params) => {
+            setEmiParams(params);
+          }}
+        />
+        <EmiPlans emiParams={emiParams} />
+      </main>
+    </UserPreferenceContext.Provider>
   );
 }
 

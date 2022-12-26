@@ -4,11 +4,9 @@ import EmiList from './EmiList/EmiList';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import FormControl from '@mui/material/FormControl';
 import Card from '@mui/material/Card';
 import AcceleratedPlanParams from './AcceleratedPlanParams/AcceleratedPlanParams';
 import {
-  formatNumber,
   formatCurrency,
   getAcceleratedEmiPlan,
   getRegularEmiPlan,
@@ -167,13 +165,38 @@ function EmiPlans(props) {
         backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
       },
     ],
+    borderWidth: 0,
   };
 
-  const options = {
+  const regularEmiChartOptions = {
     plugins: {
       legend: {
         display: true,
         position: 'bottom',
+
+        labels: {
+          color: '#000',
+          usePointStyle: true,
+          pointStyle: 'rect',
+          padding: 20,
+        },
+      },
+    },
+    borderWidth: 0,
+  };
+
+  const accEmiChartOptions = {
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+
+        labels: {
+          color: '#fff',
+          usePointStyle: true,
+          pointStyle: 'rect',
+          padding: 20,
+        },
       },
     },
     borderWidth: 0,
@@ -190,7 +213,10 @@ function EmiPlans(props) {
           Regular EMI
         </Typography>
         <div className={classes.doughtnut_chart}>
-          <Doughnut data={regularEmiChartData} options={options} />
+          <Doughnut
+            data={regularEmiChartData}
+            options={regularEmiChartOptions}
+          />
         </div>
         {/* Regular EMI plan */}
         <div className={classes.regular_emi}>
@@ -207,7 +233,7 @@ function EmiPlans(props) {
           Accelerated EMI
         </Typography>
         <div className={classes.doughtnut_chart}>
-          <Doughnut data={accEmiChartData} options={options} />
+          <Doughnut data={accEmiChartData} options={accEmiChartOptions} />
         </div>
         <CardActions>
           <div className={classes.additional_payments}>

@@ -6,6 +6,8 @@ import classes from './Header.module.css';
 import InputAdornment from '@mui/material/InputAdornment';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import MenuIcon from '@mui/icons-material/Menu';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 const darkTheme = createTheme({
   palette: {
@@ -23,10 +25,82 @@ function Header(props) {
   });
   const [locale, setLocale] = useState('en-US');
 
+  const currencyInput = (
+    <Autocomplete
+      id="currency-auto-complete"
+      sx={{ width: 230 }}
+      value={currency}
+      onChange={(event, newValue) => setCurrency(newValue)}
+      options={currencies}
+      autoHighlight
+      getOptionLabel={(option) => option.name}
+      renderOption={(props, option) => (
+        <Box
+          component="li"
+          sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+          {...props}
+        >
+          <img
+            loading="lazy"
+            height="20"
+            width="30"
+            src={option.flag}
+            alt={option.name}
+          />
+          {option.code} {option.name}
+        </Box>
+      )}
+      renderInput={(params) => (
+        <span style={{ display: 'flex' }}>
+          <TextField
+            {...params}
+            label="Currency"
+            inputProps={{
+              ...params.inputProps,
+              startAdornment: (
+                <InputAdornment position="start"></InputAdornment>
+              ),
+            }}
+          />
+        </span>
+      )}
+    />
+  );
+
+  const localeInput = (
+    <Autocomplete
+      id="locale-auto-complete"
+      sx={{ width: 230 }}
+      value={locale}
+      onChange={(event, newValue) => setLocale(newValue)}
+      options={languages}
+      autoHighlight
+      getOptionLabel={(option) => option}
+      renderOption={(props, option) => (
+        <Box
+          component="li"
+          sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+          {...props}
+        >
+          {option}
+        </Box>
+      )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Language"
+          inputProps={{
+            ...params.inputProps,
+          }}
+        />
+      )}
+    />
+  );
+
   const fetchCurrencies = async () => {
     const response = await fetch('currencies.json');
-    const currenciesList = await response.json();
-    setCurrencies(currenciesList.data);
+    const responseJson = await response.json();
+    setCurrencies(responseJson.currencies);
   };
 
   useEffect(() => {
@@ -44,81 +118,8 @@ function Header(props) {
           triminterest
         </Typography>
         <div className={classes.inputs_container}>
-          <Autocomplete
-            id="currency-auto-complete"
-            sx={{ width: 250 }}
-            value={currency}
-            onChange={(event, newValue) => setCurrency(newValue)}
-            options={currencies}
-            autoHighlight
-            getOptionLabel={(option) => option.name}
-            renderOption={(props, option) => (
-              <Box
-                component="li"
-                sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
-                {...props}
-              >
-                <img
-                  loading="lazy"
-                  height="20"
-                  width="30"
-                  src={option.flag}
-                  alt={option.name}
-                />
-                {option.code} {option.name}
-              </Box>
-            )}
-            renderInput={(params) => (
-              <span style={{ display: 'flex' }}>
-                <TextField
-                  {...params}
-                  label="Currency"
-                  inputProps={{
-                    ...params.inputProps,
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <img
-                          loading="lazy"
-                          height="20"
-                          width="30"
-                          styles={{ padding: '0.62rem 0' }}
-                          src={currency.flag}
-                          alt={currency.name}
-                        />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </span>
-            )}
-          />
-          <Autocomplete
-            id="locale-auto-complete"
-            sx={{ width: 200 }}
-            value={locale}
-            onChange={(event, newValue) => setLocale(newValue)}
-            options={languages}
-            autoHighlight
-            getOptionLabel={(option) => option}
-            renderOption={(props, option) => (
-              <Box
-                component="li"
-                sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
-                {...props}
-              >
-                {option}
-              </Box>
-            )}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Language"
-                inputProps={{
-                  ...params.inputProps,
-                }}
-              />
-            )}
-          />
+          {currencyInput}
+          {localeInput}
         </div>
       </section>
     </ThemeProvider>

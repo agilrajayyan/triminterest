@@ -110,7 +110,7 @@ function AcceleratedPlanParams(props) {
               }}
             />
           </FormControl>
-          <Typography variant="body2">additional payment every year</Typography>
+          <Typography variant="body2">additional payment every</Typography>
           <FormControl variant="standard">
             <Select
               id="demo-select-small"
