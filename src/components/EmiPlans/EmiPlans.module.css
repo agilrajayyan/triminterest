@@ -49,3 +49,19 @@
 .card_content {
   padding: 1rem 1.5rem;
 }
+
+.interest_saved {
+  font-weight: bold !important;
+  margin-bottom: 0.62rem !important;
+}
+
+.installments_reduced_by {
+  font-weight: bold !important;
+}
+
+@media (width <= 500px) {
+  .interest_saved,
+  .installments_reduced_by {
+    font-size: 2rem !important;
+  }
+}

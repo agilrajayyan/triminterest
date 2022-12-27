@@ -4,44 +4,32 @@
   box-sizing: border-box;
 }
 
-@media (width <= 520px) {
+@media (width <= 400px) {
   html {
-    font-size: 15.5px;
+    font-size: 15px;
   }
 }
 
-@media (width <= 480px) {
+@media (width <= 380px) {
   html {
-    font-size: 14.5px;
-  }
-}
-
-@media (width <= 440px) {
-  html {
-    font-size: 13.5px;
-  }
-}
-
-@media (width <= 420px) {
-  html {
-    font-size: 12.5px;
-  }
-}
-
-@media (width <= 390px) {
-  html {
-    font-size: 11.5px;
+    font-size: 14px;
   }
 }
 
 @media (width <= 360px) {
   html {
-    font-size: 10.8px;
+    font-size: 13px;
   }
 }
 
 @media (width <= 340px) {
   html {
-    font-size: 10.4px;
+    font-size: 12px;
+  }
+}
+
+@media (width <= 320px) {
+  html {
+    font-size: 10px;
   }
 }

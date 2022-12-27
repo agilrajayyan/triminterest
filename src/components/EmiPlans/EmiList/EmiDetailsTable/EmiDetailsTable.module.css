@@ -29,3 +29,10 @@
 .row_dark {
   border-bottom: 0.06rem solid #e0e0e0;
 }
+
+@media (width <= 500px) {
+  .principal_column,
+  .interest_column {
+    display: none;
+  }
+}

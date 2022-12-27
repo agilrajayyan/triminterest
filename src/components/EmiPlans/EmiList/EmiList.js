@@ -55,7 +55,7 @@ function EmiList(props) {
             <div key={yearlyDetails.year}>
               <div className={classes.emi_list_header}>
                 {expandOrShrink(yearlyDetails.year, yearlyDetails.detailedView)}
-                <Typography variant="h4" gutterBottom>
+                <Typography variant="h4" gutterBottom className={classes.year}>
                   {yearlyDetails.year}
                 </Typography>
               </div>

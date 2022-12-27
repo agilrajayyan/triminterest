@@ -13,3 +13,9 @@
 .emi_details_table {
   margin-bottom: 1.25rem;
 }
+
+@media (width <= 500px) {
+  .year {
+    font-size: 2rem !important;
+  }
+}

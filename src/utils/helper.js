@@ -156,7 +156,7 @@ export const getNthPaymentDate = (startDate, installmentNumber) => {
 
 export const formatNumber = (number, locale, isCompact) => {
   return new Intl.NumberFormat(locale, {
-    notation: isCompact && number >= 1000000 ? 'compact' : 'standard',
+    notation: isCompact && number >= 100000000 ? 'compact' : 'standard',
   }).format(number);
 };
 
@@ -164,7 +164,7 @@ export const formatCurrency = (number, locale, currencyCode) => {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: currencyCode,
-    roundingMode: 'trunc',
+    maximumFractionDigits: 0,
   }).format(number);
 };
 

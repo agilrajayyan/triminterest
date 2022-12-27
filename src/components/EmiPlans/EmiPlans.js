@@ -239,11 +239,14 @@ function EmiPlans(props) {
           <div className={classes.additional_payments}>
             <section className={classes.benefits_container}>
               <Typography variant="caption">You could save</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+              <Typography variant="h4" className={classes.interest_saved}>
                 {getInterestSaved()}
               </Typography>
               <Typography variant="caption">Installments reduced by</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+              <Typography
+                variant="h4"
+                className={classes.installments_reduced_by}
+              >
                 {getInstallmentsReducedBy()}
               </Typography>
             </section>

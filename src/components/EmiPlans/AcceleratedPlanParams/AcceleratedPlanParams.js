@@ -1,17 +1,19 @@
-import classes from './AcceleratedPlanParams.module.css';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
-import Input from '@mui/material/Input';
-import InputAdornment from '@mui/material/InputAdornment';
-import Typography from '@mui/material/Typography';
-import FormControl from '@mui/material/FormControl';
 import { useState, useEffect, useContext } from 'react';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import Tooltip from '@mui/material/Tooltip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { UserPreferenceContext } from '../../../utils/UserPreferenceContext';
 import { getCurrencySymbol } from '../../../utils/helper';
+import classes from './AcceleratedPlanParams.module.css';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import {
+  MenuItem,
+  Select,
+  Checkbox,
+  Input,
+  InputAdornment,
+  Typography,
+  FormControl,
+  Tooltip,
+} from '@mui/material';
 
 const darkTheme = createTheme({
   palette: {

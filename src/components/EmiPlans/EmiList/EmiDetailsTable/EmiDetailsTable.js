@@ -28,12 +28,12 @@ function EmiDetailsTable(props) {
               EMI ({getCurrencySymbol(locale, currency)})
             </Typography>
           </th>
-          <th className={tableHeaderCell}>
+          <th className={`${tableHeaderCell} ${classes.principal_column}`}>
             <Typography variant="subtitle2">
               Principal ({getCurrencySymbol(locale, currency)})
             </Typography>
           </th>
-          <th className={tableHeaderCell}>
+          <th className={`${tableHeaderCell} ${classes.interest_column}`}>
             <Typography variant="subtitle2">
               Interest ({getCurrencySymbol(locale, currency)})
             </Typography>
@@ -71,7 +71,9 @@ function EmiDetailsTable(props) {
                   </Typography>
                 </Tooltip>
               </td>
-              <td className={classes.table_cell}>
+              <td
+                className={`${classes.table_cell} ${classes.principal_column}`}
+              >
                 <Tooltip
                   enterTouchDelay="0"
                   title={formatNumber(elem.pricipalComponent, locale, false)}
@@ -81,7 +83,9 @@ function EmiDetailsTable(props) {
                   </Typography>
                 </Tooltip>
               </td>
-              <td className={classes.table_cell}>
+              <td
+                className={`${classes.table_cell} ${classes.interest_column}`}
+              >
                 <Tooltip
                   enterTouchDelay="0"
                   title={formatNumber(elem.interestComponent, locale, false)}
