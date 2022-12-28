@@ -58,6 +58,7 @@ function AcceleratedPlanParams(props) {
             <Input
               id="standard-adornment-weight"
               value={emiHikeRate.value}
+              type="number"
               endAdornment={<InputAdornment position="start">%</InputAdornment>}
               onChange={(event) =>
                 setEmiHikeRate((prevEmiHikeRate) => {
@@ -91,6 +92,7 @@ function AcceleratedPlanParams(props) {
           <FormControl sx={{ width: '10ch' }}>
             <Input
               id="standard-adornment-weight"
+              type="number"
               value={regularPrepayment.amount}
               startAdornment={
                 <InputAdornment position="start">

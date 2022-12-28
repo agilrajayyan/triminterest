@@ -10,6 +10,12 @@
   height: 2.81rem;
 }
 
+@media (width < 600px) {
+  .logo {
+    height: 2.3rem !important;
+  }
+}
+
 .inputs_container {
   background: #0b2545;
   display: flex;
