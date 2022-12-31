@@ -14,10 +14,17 @@ import {
   FormControl,
   Tooltip,
 } from '@mui/material';
+import CommonDialog from '../../CommonDialog/CommonDialog';
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+  },
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
   },
 });
 
@@ -28,6 +35,8 @@ function AcceleratedPlanParams(props) {
     amount: 1000,
     interval: 'year',
   });
+  const [isPrepaymentInfoDialogOpen, setIsPrepaymentInfoDialogOpen] =
+    useState(false);
   const userPreference = useContext(UserPreferenceContext);
   const { locale, currency } = userPreference;
 
@@ -71,6 +80,7 @@ function AcceleratedPlanParams(props) {
               inputProps={{
                 'aria-label': 'emiHikeRate',
               }}
+              sx={{ fontSize: '0.875rem' }}
             />
           </FormControl>
           <Typography variant="body2">increase in EMI every year</Typography>
@@ -141,12 +151,18 @@ function AcceleratedPlanParams(props) {
                 </MenuItem>
               </Select>
             </FormControl>
-            <Tooltip
-              title="Make sure to read the terms and conditions of your loan. Some loan schemes may not let the customer make a prepayment without additional charges."
-              placement="right-start"
-            >
-              <InfoOutlinedIcon sx={{ cursor: 'pointer' }}></InfoOutlinedIcon>
-            </Tooltip>
+
+            <InfoOutlinedIcon
+              sx={{ cursor: 'pointer' }}
+              onClick={() => setIsPrepaymentInfoDialogOpen(true)}
+            />
+            <ThemeProvider theme={lightTheme}>
+              <CommonDialog
+                content="Make sure to read the terms and conditions of your loan. Some loan schemes may not let the customer make a prepayment without additional charges."
+                open={isPrepaymentInfoDialogOpen}
+                onClose={() => setIsPrepaymentInfoDialogOpen(false)}
+              />
+            </ThemeProvider>
           </div>
         </div>
       </div>

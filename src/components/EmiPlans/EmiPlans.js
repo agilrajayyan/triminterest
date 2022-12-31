@@ -11,6 +11,8 @@ import {
   getAcceleratedEmiPlan,
   getRegularEmiPlan,
 } from './../../utils/helper';
+import CommonDialog from '../CommonDialog/CommonDialog';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { UserPreferenceContext } from './../../utils/UserPreferenceContext';
@@ -72,6 +74,7 @@ function EmiPlans(props) {
     emiHikeRate: null,
     regularPrepayment: null,
   });
+  const [isAccEmiDialogOpen, setIsAccEmiDialogOpen] = useState(false);
   const userPreference = useContext(UserPreferenceContext);
 
   const accParamsChangeHandler = (eventData) => {
@@ -225,13 +228,18 @@ function EmiPlans(props) {
       </div>
       {/* Accelerated EMI plan */}
       <Card className={classes.acc_emi_plan_container}>
-        <Typography
-          variant="h5"
-          align="center"
-          style={{ paddingBottom: '1.25rem' }}
-        >
-          Pay fast plan
-        </Typography>
+        <div className={classes.acc_emi_title}>
+          <Typography variant="h5">Pay fast plan</Typography>
+          <HelpOutlineIcon
+            sx={{ cursor: 'pointer' }}
+            onClick={() => setIsAccEmiDialogOpen(true)}
+          />
+        </div>
+        <CommonDialog
+          content="You can save big in interest by increasing the EMI amount every year and by making additional payments."
+          open={isAccEmiDialogOpen}
+          onClose={() => setIsAccEmiDialogOpen(false)}
+        />
         <div className={classes.doughtnut_chart}>
           <Doughnut data={accEmiChartData} options={accEmiChartOptions} />
         </div>

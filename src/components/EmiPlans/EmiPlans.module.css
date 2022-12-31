@@ -31,6 +31,20 @@
   border-radius: 2.5rem !important;
 }
 
+@media (width <=600px) {
+  .acc_emi_plan_container {
+    width: 100vw;
+  }
+}
+
+.acc_emi_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
 .additional_payments {
   margin: 1.87rem;
 }
