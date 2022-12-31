@@ -63,11 +63,18 @@ function EmiDetailsTable(props) {
               </td>
               <td className={classes.table_cell}>
                 <Tooltip
-                  enterTouchDelay="0"
-                  title={formatNumber(elem.emi, locale, false)}
+                  title={formatNumber(elem.emi, {
+                    locale,
+                    isCompact: false,
+                    roundOff: true,
+                  })}
                 >
                   <Typography variant="body2">
-                    {formatNumber(elem.emi, locale, true)}
+                    {formatNumber(elem.emi, {
+                      locale,
+                      isCompact: true,
+                      roundOff: true,
+                    })}
                   </Typography>
                 </Tooltip>
               </td>
@@ -75,11 +82,18 @@ function EmiDetailsTable(props) {
                 className={`${classes.table_cell} ${classes.principal_column}`}
               >
                 <Tooltip
-                  enterTouchDelay="0"
-                  title={formatNumber(elem.pricipalComponent, locale, false)}
+                  title={formatNumber(elem.pricipalComponent, {
+                    locale,
+                    isCompact: false,
+                    roundOff: true,
+                  })}
                 >
                   <Typography variant="body2">
-                    {formatNumber(elem.pricipalComponent, locale, true)}
+                    {formatNumber(elem.pricipalComponent, {
+                      locale,
+                      isCompact: true,
+                      roundOff: true,
+                    })}
                   </Typography>
                 </Tooltip>
               </td>
@@ -87,37 +101,54 @@ function EmiDetailsTable(props) {
                 className={`${classes.table_cell} ${classes.interest_column}`}
               >
                 <Tooltip
-                  enterTouchDelay="0"
-                  title={formatNumber(elem.interestComponent, locale, false)}
+                  title={formatNumber(elem.interestComponent, {
+                    locale,
+                    isCompact: false,
+                    roundOff: true,
+                  })}
                 >
                   <Typography variant="body2">
-                    {formatNumber(elem.interestComponent, locale, true)}
+                    {formatNumber(elem.interestComponent, {
+                      locale,
+                      isCompact: true,
+                      roundOff: true,
+                    })}
                   </Typography>
                 </Tooltip>
               </td>
               {props.prepaymentEnabled && (
                 <td className={classes.table_cell}>
                   <Tooltip
-                    enterTouchDelay="0"
-                    title={formatNumber(
-                      elem.regularPrepaymentAmount,
+                    title={formatNumber(elem.regularPrepaymentAmount, {
                       locale,
-                      false
-                    )}
+                      isCompact: false,
+                      roundOff: true,
+                    })}
                   >
                     <Typography variant="body2">
-                      {formatNumber(elem.regularPrepaymentAmount, locale, true)}
+                      {formatNumber(elem.regularPrepaymentAmount, {
+                        locale,
+                        isCompact: true,
+                        roundOff: true,
+                      })}
                     </Typography>
                   </Tooltip>
                 </td>
               )}
               <td className={classes.table_cell}>
                 <Tooltip
-                  enterTouchDelay="0"
-                  title={formatNumber(elem.loanRemaining, locale, false)}
+                  title={formatNumber(elem.loanRemaining, {
+                    locale,
+                    isCompact: false,
+                    roundOff: true,
+                  })}
                 >
                   <Typography variant="body2">
-                    {formatNumber(elem.loanRemaining, locale, true)}
+                    {formatNumber(elem.loanRemaining, {
+                      locale,
+                      isCompact: true,
+                      roundOff: true,
+                    })}
                   </Typography>
                 </Tooltip>
               </td>

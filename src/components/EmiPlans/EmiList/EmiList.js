@@ -55,7 +55,17 @@ function EmiList(props) {
             <div key={yearlyDetails.year}>
               <div className={classes.emi_list_header}>
                 {expandOrShrink(yearlyDetails.year, yearlyDetails.detailedView)}
-                <Typography variant="h4" gutterBottom className={classes.year}>
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  className={classes.year}
+                  onClick={() => {
+                    visibilityHandler(
+                      yearlyDetails.year,
+                      !yearlyDetails.detailedView
+                    );
+                  }}
+                >
                   {yearlyDetails.year}
                 </Typography>
               </div>

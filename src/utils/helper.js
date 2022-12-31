@@ -51,11 +51,11 @@ export const getAcceleratedEmiPlan = (inputs) => {
     payments.push({
       installmentNumber: index,
       paymentDate: getNthPaymentDate(emiStartDate, index),
-      pricipalComponent: Math.round(pricipalComponent),
-      interestComponent: Math.round(interestComponent),
-      emi: Math.round(pricipalComponent + interestComponent),
+      pricipalComponent: pricipalComponent,
+      interestComponent: interestComponent,
+      emi: pricipalComponent + interestComponent,
       regularPrepaymentAmount,
-      loanRemaining: Math.round(loanRemaining),
+      loanRemaining: loanRemaining,
     });
   }
   payments = payments.filter((payment) => payment.emi > 0);
@@ -63,9 +63,8 @@ export const getAcceleratedEmiPlan = (inputs) => {
   return {
     payments: groupPaymentsByYear(payments),
     numberOfInstallments: payments.length,
-    totalInterest: payments.reduce(
-      (acc, curr) => acc + curr.interestComponent,
-      0
+    totalInterest: Math.round(
+      payments.reduce((acc, curr) => acc + curr.interestComponent, 0)
     ),
     totalPrincipal: loanAmount,
   };
@@ -98,10 +97,10 @@ export const getRegularEmiPlan = (inputs) => {
       date: getNthPaymentDate(emiStartDate, index),
       installmentNumber: index,
       paymentDate: getNthPaymentDate(emiStartDate, index),
-      emi: Math.round(pricipalComponent + interestComponent),
-      pricipalComponent: Math.round(pricipalComponent),
-      interestComponent: Math.round(interestComponent),
-      loanRemaining: Math.round(loanRemaining),
+      emi: pricipalComponent + interestComponent,
+      pricipalComponent: pricipalComponent,
+      interestComponent: interestComponent,
+      loanRemaining: loanRemaining,
     });
   }
   payments = payments.filter((payment) => payment.emi > 0);
@@ -109,9 +108,8 @@ export const getRegularEmiPlan = (inputs) => {
   return {
     payments: groupPaymentsByYear(payments),
     numberOfInstallments: payments.length,
-    totalInterest: payments.reduce(
-      (acc, curr) => acc + curr.interestComponent,
-      0
+    totalInterest: Math.round(
+      payments.reduce((acc, curr) => acc + curr.interestComponent, 0)
     ),
     totalPrincipal: loanAmount,
   };
@@ -154,10 +152,11 @@ export const getNthPaymentDate = (startDate, installmentNumber) => {
   return paymentDate;
 };
 
-export const formatNumber = (number, locale, isCompact) => {
-  return new Intl.NumberFormat(locale, {
-    notation: isCompact && number >= 100000000 ? 'compact' : 'standard',
-  }).format(number);
+export const formatNumber = (number, options) => {
+  const { locale, isCompact, roundOff } = options;
+  const roundedNumber = roundOff ? Math.round(number) : number;
+  const notation = isCompact && number >= 100000000 ? 'compact' : 'standard';
+  return new Intl.NumberFormat(locale, { notation }).format(roundedNumber);
 };
 
 export const formatCurrency = (number, locale, currencyCode) => {

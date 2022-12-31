@@ -54,7 +54,7 @@ function AcceleratedPlanParams(props) {
             }
             inputProps={{ 'aria-label': 'controlled' }}
           />
-          <FormControl variant="standard" sx={{ width: '10ch' }}>
+          <FormControl variant="standard" sx={{ width: '8ch' }}>
             <Input
               id="standard-adornment-weight"
               value={emiHikeRate.value}
@@ -89,55 +89,65 @@ function AcceleratedPlanParams(props) {
             }}
             inputProps={{ 'aria-label': 'controlled' }}
           />
-          <FormControl sx={{ width: '10ch' }}>
-            <Input
-              id="standard-adornment-weight"
-              type="number"
-              value={regularPrepayment.amount}
-              startAdornment={
-                <InputAdornment position="start">
-                  {getCurrencySymbol(locale, currency)}
-                </InputAdornment>
-              }
-              onChange={(event) =>
-                setRegularPrepayment((prevRegularPrepayment) => {
-                  return {
-                    ...prevRegularPrepayment,
-                    amount: Number(event.target.value),
-                  };
-                })
-              }
-              aria-describedby="standard-weight-helper-text"
-              inputProps={{
-                'aria-label': 'weight',
-              }}
-            />
-          </FormControl>
-          <Typography variant="body2">additional payment every</Typography>
-          <FormControl variant="standard">
-            <Select
-              id="demo-select-small"
-              value={regularPrepayment.interval}
-              onChange={(event) =>
-                setRegularPrepayment((prevRegularPrepayment) => {
-                  return {
-                    ...prevRegularPrepayment,
-                    interval: event.target.value,
-                  };
-                })
-              }
+          <div className={classes.prepayments_container}>
+            <Typography variant="body2">Pay extra</Typography>
+            <FormControl sx={{ width: '11ch' }}>
+              <Input
+                id="standard-adornment-weight"
+                type="number"
+                value={regularPrepayment.amount}
+                startAdornment={
+                  <InputAdornment position="start">
+                    {getCurrencySymbol(locale, currency)}
+                  </InputAdornment>
+                }
+                onChange={(event) =>
+                  setRegularPrepayment((prevRegularPrepayment) => {
+                    return {
+                      ...prevRegularPrepayment,
+                      amount: Number(event.target.value),
+                    };
+                  })
+                }
+                aria-describedby="standard-weight-helper-text"
+                inputProps={{
+                  'aria-label': 'weight',
+                }}
+                sx={{ fontSize: '0.875rem' }}
+              />
+            </FormControl>
+            <FormControl variant="standard">
+              <Select
+                id="demo-select-small"
+                value={regularPrepayment.interval}
+                onChange={(event) =>
+                  setRegularPrepayment((prevRegularPrepayment) => {
+                    return {
+                      ...prevRegularPrepayment,
+                      interval: event.target.value,
+                    };
+                  })
+                }
+                sx={{ fontSize: '0.875rem' }}
+              >
+                <MenuItem value={'year'} sx={{ fontSize: '0.875rem' }}>
+                  yearly
+                </MenuItem>
+                <MenuItem value={'quarter'} sx={{ fontSize: '0.875rem' }}>
+                  quarterly
+                </MenuItem>
+                <MenuItem value={'month'} sx={{ fontSize: '0.875rem' }}>
+                  monthly
+                </MenuItem>
+              </Select>
+            </FormControl>
+            <Tooltip
+              title="Make sure to read the terms and conditions of your loan. Some loan schemes may not let the customer make a prepayment without additional charges."
+              placement="right-start"
             >
-              <MenuItem value={'year'}>Year</MenuItem>
-              <MenuItem value={'quarter'}>Quarter</MenuItem>
-              <MenuItem value={'month'}>Month</MenuItem>
-            </Select>
-          </FormControl>
-          <Tooltip
-            title="Make sure to read the terms and conditions of your loan. Some loan schemes may not let the customer make a prepayment without additional charges."
-            placement="right-start"
-          >
-            <InfoOutlinedIcon sx={{ cursor: 'pointer' }}></InfoOutlinedIcon>
-          </Tooltip>
+              <InfoOutlinedIcon sx={{ cursor: 'pointer' }}></InfoOutlinedIcon>
+            </Tooltip>
+          </div>
         </div>
       </div>
     </ThemeProvider>

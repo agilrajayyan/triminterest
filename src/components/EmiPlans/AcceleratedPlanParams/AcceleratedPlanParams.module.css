@@ -11,6 +11,8 @@
   align-items: center;
 }
 
-.custom_prepayment_switch {
-  margin-left: 0.31rem;
+.prepayments_container {
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
 }

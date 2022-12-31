@@ -15,17 +15,45 @@ const darkTheme = createTheme({
     mode: 'dark',
   },
 });
-const languages = ['en-US', 'de-DE', 'it-IT'];
+const languages = [
+  { code: 'en-US', name: 'English (US)' },
+  { code: 'de-DE', name: 'German' },
+  { code: 'it-IT', name: 'Italian' },
+];
 
 function Header(props) {
   const [currencies, setCurrencies] = useState([]);
-  const [currency, setCurrency] = useState({
-    name: 'US Dollar',
-    code: 'USD',
-    flag: 'https://flagcdn.com/us.svg',
+  const [currency, setCurrency] = useState(() => {
+    const fallbackValue = {
+      name: 'US Dollar',
+      code: 'USD',
+      flag: 'https://flagcdn.com/us.svg',
+    };
+    const storedCurrency = localStorage.getItem('currency');
+    return storedCurrency ? JSON.parse(storedCurrency) : fallbackValue;
   });
-  const [locale, setLocale] = useState('en-US');
+  const [locale, setLocale] = useState(() => {
+    const fallbackValue = { code: 'en-US', name: 'English (US)' };
+    const storedLocale = localStorage.getItem('locale');
+    return storedLocale ? JSON.parse(storedLocale) : fallbackValue;
+  });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const fetchCurrencies = async () => {
+    const response = await fetch('currencies.json');
+    const responseJson = await response.json();
+    setCurrencies(responseJson.currencies);
+  };
+
+  useEffect(() => {
+    fetchCurrencies();
+  }, []);
+
+  useEffect(() => {
+    props.onChangePreference({ currency: currency.code, locale: locale.code });
+    localStorage.setItem('currency', JSON.stringify(currency));
+    localStorage.setItem('locale', JSON.stringify(locale));
+  }, [currency, locale]);
 
   const currencyInput = (
     <Autocomplete
@@ -77,14 +105,14 @@ function Header(props) {
       onChange={(event, newValue) => setLocale(newValue)}
       options={languages}
       autoHighlight
-      getOptionLabel={(option) => option}
+      getOptionLabel={(option) => option.name}
       renderOption={(props, option) => (
         <Box
           component="li"
           sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
           {...props}
         >
-          {option}
+          {option.name}
         </Box>
       )}
       renderInput={(params) => (
@@ -98,20 +126,6 @@ function Header(props) {
       )}
     />
   );
-
-  const fetchCurrencies = async () => {
-    const response = await fetch('currencies.json');
-    const responseJson = await response.json();
-    setCurrencies(responseJson.currencies);
-  };
-
-  useEffect(() => {
-    fetchCurrencies();
-  }, []);
-
-  useEffect(() => {
-    props.onChangePreference({ currency: currency.code, locale });
-  }, [currency, locale]);
 
   return (
     <ThemeProvider theme={darkTheme}>

@@ -210,7 +210,7 @@ function EmiPlans(props) {
           align="center"
           style={{ marginBottom: '1.25rem' }}
         >
-          Regular EMI
+          Normal plan
         </Typography>
         <div className={classes.doughtnut_chart}>
           <Doughnut
@@ -230,7 +230,7 @@ function EmiPlans(props) {
           align="center"
           style={{ paddingBottom: '1.25rem' }}
         >
-          Accelerated EMI
+          Pay fast plan
         </Typography>
         <div className={classes.doughtnut_chart}>
           <Doughnut data={accEmiChartData} options={accEmiChartOptions} />

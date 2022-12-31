@@ -35,8 +35,14 @@
   margin: 1.87rem;
 }
 
+@media (width <= 500px) {
+  .additional_payments {
+    margin: 1.4rem;
+  }
+}
+
 .benefits_container {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.4rem;
 }
 
 .doughtnut_chart {

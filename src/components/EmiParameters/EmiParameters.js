@@ -10,7 +10,7 @@ import { UserPreferenceContext } from '../../utils/UserPreferenceContext';
 import { getCurrencySymbol } from '../../utils/helper';
 
 function EmiParameters(props) {
-  const [loanAmount, setLoanAmount] = useState(4800000);
+  const [loanAmount, setLoanAmount] = useState(5000000);
   const [interestRate, seInterestRate] = useState(8);
   const [numberOfYears, setNumberOfYears] = useState(25);
   const [emiStartdate, setEmiStartdate] = useState(dayjs(new Date()));
