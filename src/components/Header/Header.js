@@ -18,8 +18,7 @@ const darkTheme = createTheme({
 });
 const languages = [
   { code: 'en-US', name: 'English (US)' },
-  { code: 'de-DE', name: 'German' },
-  { code: 'it-IT', name: 'Italian' },
+  { code: 'es-ES', name: 'Spanish' },
 ];
 
 function Header(props) {
@@ -59,6 +58,7 @@ function Header(props) {
       });
       localStorage.setItem('currency', JSON.stringify(currency));
       localStorage.setItem('locale', JSON.stringify(locale));
+      i18n.changeLanguage(locale.code);
     }
   }, [currency, locale]);
 
@@ -109,7 +109,10 @@ function Header(props) {
       id="locale-auto-complete"
       sx={{ width: 230 }}
       value={locale}
-      onChange={(event, newValue) => setLocale(newValue)}
+      onChange={(event, newValue) => {
+        setLocale(newValue);
+        i18n.changeLanguage(newValue.code);
+      }}
       options={languages}
       autoHighlight
       getOptionLabel={(option) => option.name}

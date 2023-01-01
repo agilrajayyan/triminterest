@@ -3,8 +3,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
+import { useTranslation } from 'react-i18next';
 
 function CommonDialog(props) {
+  const { t } = useTranslation();
+
   return (
     <Dialog
       open={props.open || false}
@@ -24,8 +27,9 @@ function CommonDialog(props) {
           onClick={() => {
             props.onClose();
           }}
+          sx={{ textTransform: 'none' }}
         >
-          OK
+          {t('ok')}
         </Button>
       </DialogActions>
     </Dialog>

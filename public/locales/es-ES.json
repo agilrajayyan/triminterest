@@ -1,0 +1,42 @@
+{
+  "plan": {
+    "normal": "plano normal",
+    "accelerated": "Plan de pago rápido",
+    "acc.help.text": "Con el plan Pagar rápido, puede ahorrar mucho en intereses aumentando la cantidad de EMI cada año y haciendo prepagos."
+  },
+  "preference": {
+    "title": "preferencias",
+    "currency.label": "Divisa",
+    "language.label": "Idioma"
+  },
+  "emi.params": {
+    "loan.amount": "Monto del préstamo",
+    "interest.rate": "Tasa de interés",
+    "loan.tenure": "Tenencia del préstamo",
+    "years": "Años",
+    "start.date": "EMI comienza el"
+  },
+  "chart.legend": {
+    "principal": "Director de escuela",
+    "interest": "Interés"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "podrías ahorrar",
+    "benefits.tenure.text": "Número de pagos reducido en",
+    "increase.emi.text": "de aumento en EMI cada año",
+    "prepayment.text": "Pago extra",
+    "prepayment.yearly": "anual",
+    "prepayment.quarterly": "trimestral",
+    "prepayment.monthly": "mensual",
+    "prepayment.info.text": "Asegúrese de leer los términos y condiciones de su préstamo. Es posible que algunos esquemas de préstamos no permitan que el cliente realice un pago anticipado y otros cobran tarifas cada vez que el cliente realiza un pago anticipado."
+  },
+  "table.column": {
+    "month": "Mes",
+    "emi": "EMI",
+    "principal": "Director de escuela",
+    "interest": "Interés",
+    "prepayment": "Pago adicional",
+    "remaining.loan": "Préstamo restante"
+  },
+  "ok": "Okey"
+}
