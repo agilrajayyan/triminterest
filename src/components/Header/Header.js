@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useTranslation } from 'react-i18next';
 
 const darkTheme = createTheme({
   palette: {
@@ -38,6 +39,7 @@ function Header(props) {
     return storedLocale ? JSON.parse(storedLocale) : fallbackValue;
   });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const fetchCurrencies = async () => {
     const response = await fetch('currencies.json');
@@ -50,9 +52,14 @@ function Header(props) {
   }, []);
 
   useEffect(() => {
-    props.onChangePreference({ currency: currency.code, locale: locale.code });
-    localStorage.setItem('currency', JSON.stringify(currency));
-    localStorage.setItem('locale', JSON.stringify(locale));
+    if (currency && locale) {
+      props.onChangePreference({
+        currency: currency.code,
+        locale: locale.code,
+      });
+      localStorage.setItem('currency', JSON.stringify(currency));
+      localStorage.setItem('locale', JSON.stringify(locale));
+    }
   }, [currency, locale]);
 
   const currencyInput = (
@@ -77,14 +84,14 @@ function Header(props) {
             src={option.flag}
             alt={option.name}
           />
-          {option.name} ({option.code})
+          {option.name}
         </Box>
       )}
       renderInput={(params) => (
         <span style={{ display: 'flex' }}>
           <TextField
             {...params}
-            label="Currency"
+            label={t('preference.currency.label')}
             inputProps={{
               ...params.inputProps,
               startAdornment: (
@@ -118,7 +125,7 @@ function Header(props) {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Language"
+          label={t('preference.language.label')}
           inputProps={{
             ...params.inputProps,
           }}
@@ -159,7 +166,7 @@ function Header(props) {
               onClick={() => setIsDrawerOpen(false)}
             />
             <Typography variant="h6" align="left">
-              Preferences
+              {t('preference.title')}
             </Typography>
           </div>
           <div className={classes.drawer_inputs_container}>

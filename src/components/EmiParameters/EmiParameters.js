@@ -8,6 +8,7 @@ import { useState, useEffect, useContext } from 'react';
 import classes from './EmiParameters.module.css';
 import { UserPreferenceContext } from '../../utils/UserPreferenceContext';
 import { getCurrencySymbol } from '../../utils/helper';
+import { useTranslation } from 'react-i18next';
 
 function EmiParameters(props) {
   const [loanAmount, setLoanAmount] = useState(5000000);
@@ -16,6 +17,7 @@ function EmiParameters(props) {
   const [emiStartdate, setEmiStartdate] = useState(dayjs(new Date()));
   const userPreference = useContext(UserPreferenceContext);
   const { locale, currency } = userPreference;
+  const { t } = useTranslation();
 
   useEffect(() => {
     props.onChangeEmiParams({
@@ -29,7 +31,7 @@ function EmiParameters(props) {
   return (
     <section className={classes.inputs_container}>
       <TextField
-        label="Loan Amount"
+        label={t('emi.params.loan.amount')}
         type="number"
         id="outlined-start-adornment"
         value={loanAmount}
@@ -43,7 +45,7 @@ function EmiParameters(props) {
         }}
       />
       <TextField
-        label="Interest rate"
+        label={t('emi.params.interest.rate')}
         type="number"
         id="outlined-end-adornment"
         value={interestRate}
@@ -53,19 +55,23 @@ function EmiParameters(props) {
         }}
       />
       <TextField
-        label="Loan Tenure"
+        label={t('emi.params.loan.tenure')}
         type="number"
         id="outlined-end-adornment"
         value={numberOfYears}
         onChange={(event) => setNumberOfYears(Number(event.target.value))}
         InputProps={{
-          endAdornment: <InputAdornment position="end">Years</InputAdornment>,
+          endAdornment: (
+            <InputAdornment position="end">
+              {t('emi.params.years')}
+            </InputAdornment>
+          ),
         }}
       />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
+          label={t('emi.params.start.date')}
           views={['year', 'month']}
-          label="EMI starts on"
           value={emiStartdate}
           onChange={(value) => setEmiStartdate(value)}
           renderInput={(params) => <TextField {...params} helperText={null} />}

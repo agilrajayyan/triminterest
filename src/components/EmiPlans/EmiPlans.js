@@ -13,6 +13,7 @@ import {
 } from './../../utils/helper';
 import CommonDialog from '../CommonDialog/CommonDialog';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { useTranslation } from 'react-i18next';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { UserPreferenceContext } from './../../utils/UserPreferenceContext';
@@ -76,6 +77,7 @@ function EmiPlans(props) {
   });
   const [isAccEmiDialogOpen, setIsAccEmiDialogOpen] = useState(false);
   const userPreference = useContext(UserPreferenceContext);
+  const { t } = useTranslation();
 
   const accParamsChangeHandler = (eventData) => {
     const { interestRate, numberOfYears, loanAmount, emiStartDate } =
@@ -148,7 +150,7 @@ function EmiPlans(props) {
   };
 
   const regularEmiChartData = {
-    labels: ['Principal', 'Interest'],
+    labels: [t('chart.legend.principal'), t('chart.legend.interest')],
     datasets: [
       {
         data: [regularEmiPlan.totalPrincipal, regularEmiPlan.totalInterest],
@@ -158,7 +160,7 @@ function EmiPlans(props) {
   };
 
   const accEmiChartData = {
-    labels: ['Principal', 'Interest'],
+    labels: [t('chart.legend.principal'), t('chart.legend.interest')],
     datasets: [
       {
         data: [
@@ -213,7 +215,7 @@ function EmiPlans(props) {
           align="center"
           style={{ marginBottom: '1.25rem' }}
         >
-          Normal plan
+          {t('plan.normal')}
         </Typography>
         <div className={classes.doughtnut_chart}>
           <Doughnut
@@ -229,14 +231,14 @@ function EmiPlans(props) {
       {/* Accelerated EMI plan */}
       <Card className={classes.acc_emi_plan_container}>
         <div className={classes.acc_emi_title}>
-          <Typography variant="h5">Pay fast plan</Typography>
+          <Typography variant="h5">{t('plan.accelerated')}</Typography>
           <HelpOutlineIcon
             sx={{ cursor: 'pointer' }}
             onClick={() => setIsAccEmiDialogOpen(true)}
           />
         </div>
         <CommonDialog
-          content="You can save big in interest by increasing the EMI amount every year and by making additional payments."
+          content={t('plan.acc.help.text')}
           open={isAccEmiDialogOpen}
           onClose={() => setIsAccEmiDialogOpen(false)}
         />
@@ -246,11 +248,15 @@ function EmiPlans(props) {
         <CardActions>
           <div className={classes.additional_payments}>
             <section className={classes.benefits_container}>
-              <Typography variant="caption">You could save</Typography>
+              <Typography variant="body2">
+                {t('acc.plan.benefits.amount.text')}
+              </Typography>
               <Typography variant="h4" className={classes.interest_saved}>
                 {getInterestSaved()}
               </Typography>
-              <Typography variant="caption">Installments reduced by</Typography>
+              <Typography variant="body2">
+                {t('acc.plan.benefits.tenure.text')}
+              </Typography>
               <Typography
                 variant="h4"
                 className={classes.installments_reduced_by}

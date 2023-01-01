@@ -7,6 +7,7 @@ import {
   getCurrencySymbol,
 } from '../../../../utils/helper';
 import { UserPreferenceContext } from '../../../../utils/UserPreferenceContext';
+import { useTranslation } from 'react-i18next';
 
 function EmiDetailsTable(props) {
   const tableHeaderCell = `${classes.table_header_cell}`;
@@ -15,39 +16,46 @@ function EmiDetailsTable(props) {
     : classes.row_dark;
   const userPreference = useContext(UserPreferenceContext);
   const { locale, currency } = userPreference;
+  const { t } = useTranslation();
 
   return (
     <table className={`${classes.table} ${props.classes}`}>
       <thead>
         <tr className={borderClass}>
           <th className={classes.month_cell}>
-            <Typography variant="subtitle2">Month</Typography>
+            <Typography variant="subtitle2">
+              {t('table.column.month')}
+            </Typography>
           </th>
           <th className={tableHeaderCell}>
             <Typography variant="subtitle2">
-              EMI ({getCurrencySymbol(locale, currency)})
+              {t('table.column.emi')} ({getCurrencySymbol(locale, currency)})
             </Typography>
           </th>
           <th className={`${tableHeaderCell} ${classes.principal_column}`}>
             <Typography variant="subtitle2">
-              Principal ({getCurrencySymbol(locale, currency)})
+              {t('table.column.principal')} (
+              {getCurrencySymbol(locale, currency)})
             </Typography>
           </th>
           <th className={`${tableHeaderCell} ${classes.interest_column}`}>
             <Typography variant="subtitle2">
-              Interest ({getCurrencySymbol(locale, currency)})
+              {t('table.column.interest')} (
+              {getCurrencySymbol(locale, currency)})
             </Typography>
           </th>
           {props.prepaymentEnabled && (
             <th className={tableHeaderCell}>
               <Typography variant="subtitle2">
-                Prepayment ({getCurrencySymbol(locale, currency)})
+                {t('table.column.prepayment')} (
+                {getCurrencySymbol(locale, currency)})
               </Typography>
             </th>
           )}
           <th className={tableHeaderCell}>
             <Typography variant="subtitle2">
-              Remaining Loan ({getCurrencySymbol(locale, currency)})
+              {t('table.column.remaining.loan')} (
+              {getCurrencySymbol(locale, currency)})
             </Typography>
           </th>
         </tr>

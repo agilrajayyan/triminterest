@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import EmiParameters from './components/EmiParameters/EmiParameters';
 import EmiPlans from './components/EmiPlans/EmiPlans';
 import Header from './components/Header/Header';

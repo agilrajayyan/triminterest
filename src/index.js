@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 
+import './i18n';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCFY2AiOiV9jTaHml9s7TC8IM2BRFgZrVk',
   authDomain: 'slayinterest.firebaseapp.com',

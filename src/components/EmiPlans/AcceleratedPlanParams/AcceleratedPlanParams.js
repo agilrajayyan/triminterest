@@ -15,6 +15,7 @@ import {
   Tooltip,
 } from '@mui/material';
 import CommonDialog from '../../CommonDialog/CommonDialog';
+import { useTranslation } from 'react-i18next';
 
 const darkTheme = createTheme({
   palette: {
@@ -39,6 +40,7 @@ function AcceleratedPlanParams(props) {
     useState(false);
   const userPreference = useContext(UserPreferenceContext);
   const { locale, currency } = userPreference;
+  const { t } = useTranslation();
 
   useEffect(() => {
     props.onChangeParams({
@@ -83,7 +85,9 @@ function AcceleratedPlanParams(props) {
               sx={{ fontSize: '0.875rem' }}
             />
           </FormControl>
-          <Typography variant="body2">increase in EMI every year</Typography>
+          <Typography variant="body2">
+            {t('acc.plan.increase.emi.text')}
+          </Typography>
         </div>
         <div className={classes.prepayment_condition}>
           <Checkbox
@@ -100,7 +104,9 @@ function AcceleratedPlanParams(props) {
             inputProps={{ 'aria-label': 'controlled' }}
           />
           <div className={classes.prepayments_container}>
-            <Typography variant="body2">Pay extra</Typography>
+            <Typography variant="body2">
+              {t('acc.plan.prepayment.text')}
+            </Typography>
             <FormControl sx={{ width: '11ch' }}>
               <Input
                 id="standard-adornment-weight"
@@ -141,13 +147,13 @@ function AcceleratedPlanParams(props) {
                 sx={{ fontSize: '0.875rem' }}
               >
                 <MenuItem value={'year'} sx={{ fontSize: '0.875rem' }}>
-                  yearly
+                  {t('acc.plan.prepayment.yearly')}
                 </MenuItem>
                 <MenuItem value={'quarter'} sx={{ fontSize: '0.875rem' }}>
-                  quarterly
+                  {t('acc.plan.prepayment.quarterly')}
                 </MenuItem>
                 <MenuItem value={'month'} sx={{ fontSize: '0.875rem' }}>
-                  monthly
+                  {t('acc.plan.prepayment.monthly')}
                 </MenuItem>
               </Select>
             </FormControl>
@@ -158,7 +164,7 @@ function AcceleratedPlanParams(props) {
             />
             <ThemeProvider theme={lightTheme}>
               <CommonDialog
-                content="Make sure to read the terms and conditions of your loan. Some loan schemes may not let the customer make a prepayment without additional charges."
+                content={t('acc.plan.prepayment.info.text')}
                 open={isPrepaymentInfoDialogOpen}
                 onClose={() => setIsPrepaymentInfoDialogOpen(false)}
               />
