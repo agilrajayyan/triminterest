@@ -75,7 +75,7 @@ function AcceleratedPlanParams(props) {
                 setEmiHikeRate((prevEmiHikeRate) => {
                   return {
                     ...prevEmiHikeRate,
-                    value: Number(event.target.value),
+                    value: event.target.value,
                   };
                 })
               }
@@ -121,7 +121,7 @@ function AcceleratedPlanParams(props) {
                   setRegularPrepayment((prevRegularPrepayment) => {
                     return {
                       ...prevRegularPrepayment,
-                      amount: Number(event.target.value),
+                      amount: event.target.value,
                     };
                   })
                 }

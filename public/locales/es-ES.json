@@ -1,6 +1,6 @@
 {
   "plan": {
-    "normal": "plano normal",
+    "normal": "Plan de normal",
     "accelerated": "Plan de pago rápido",
     "acc.help.text": "Con el plan Pagar rápido, puede ahorrar mucho en intereses aumentando la cantidad de EMI cada año y haciendo prepagos."
   },

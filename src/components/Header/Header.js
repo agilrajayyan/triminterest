@@ -19,6 +19,7 @@ const darkTheme = createTheme({
 const languages = [
   { code: 'en-US', name: 'English (US)' },
   { code: 'es-ES', name: 'Spanish' },
+  { code: 'pt-PT', name: 'Portuguese' },
 ];
 
 function Header(props) {
@@ -69,7 +70,6 @@ function Header(props) {
       value={currency}
       onChange={(event, newValue) => setCurrency(newValue)}
       options={currencies}
-      autoHighlight
       getOptionLabel={(option) => option.name}
       renderOption={(props, option) => (
         <Box
@@ -114,7 +114,6 @@ function Header(props) {
         i18n.changeLanguage(newValue.code);
       }}
       options={languages}
-      autoHighlight
       getOptionLabel={(option) => option.name}
       renderOption={(props, option) => (
         <Box

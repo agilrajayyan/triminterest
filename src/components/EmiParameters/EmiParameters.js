@@ -49,7 +49,7 @@ function EmiParameters(props) {
         type="number"
         id="outlined-end-adornment"
         value={interestRate}
-        onChange={(event) => seInterestRate(Number(event.target.value))}
+        onChange={(event) => seInterestRate(event.target.value)}
         InputProps={{
           endAdornment: <InputAdornment position="end">%</InputAdornment>,
         }}
@@ -59,7 +59,7 @@ function EmiParameters(props) {
         type="number"
         id="outlined-end-adornment"
         value={numberOfYears}
-        onChange={(event) => setNumberOfYears(Number(event.target.value))}
+        onChange={(event) => setNumberOfYears(event.target.value)}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

@@ -1,0 +1,41 @@
+{
+  "plan": {
+    "normal": "Plano normal",
+    "accelerated": "Plano de pagamento rápido",
+    "acc.help.text": "Com o Plano de pagamento rápido, você pode economizar muito em juros aumentando o valor do EMI todos os anos e fazendo pagamentos antecipados."
+  },
+  "preference": {
+    "title": "Preferências",
+    "currency.label": "Moeda",
+    "language.label": "Língua"
+  },
+  "emi.params": {
+    "loan.amount": "Montante do empréstimo",
+    "interest.rate": "Taxa de juro",
+    "loan.tenure": "Duração do empréstimo",
+    "years": "Anos",
+    "start.date": "EMI começa em"
+  },
+  "chart.legend": {
+    "principal": "Quantia principal",
+    "interest": "Interesse"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "Você pode economizar",
+    "benefits.tenure.text": "Installments reduced by",
+    "increase.emi.text": "aumento do EMI a cada ano",
+    "prepayment.text": "Pagar mais",
+    "prepayment.yearly": "anual",
+    "prepayment.quarterly": "trimestral",
+    "prepayment.monthly": "mensais",
+    "prepayment.info.text": "Certifique-se de ler os termos e condições do seu empréstimo. Alguns esquemas de empréstimo podem não permitir que o cliente faça um pré-pagamento e outros cobram taxas sempre que o cliente faz um pré-pagamento."
+  },
+  "table.column": {
+    "month": "Mês",
+    "emi": "EMI",
+    "principal": "Quantia principal",
+    "interest": "Interesse",
+    "prepayment": "Pré-pagamento",
+    "remaining.loan": "Empréstimo restante"
+  }
+}
