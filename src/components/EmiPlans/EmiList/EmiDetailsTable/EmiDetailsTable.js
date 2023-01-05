@@ -3,7 +3,7 @@ import classes from './EmiDetailsTable.module.css';
 import { Typography, Tooltip } from '@mui/material';
 import {
   formatNumber,
-  getMonthByIndex,
+  getMonth,
   getCurrencySymbol,
 } from '../../../../utils/helper';
 import { UserPreferenceContext } from '../../../../utils/UserPreferenceContext';
@@ -66,7 +66,7 @@ function EmiDetailsTable(props) {
             <tr key={elem.loanRemaining} className={borderClass}>
               <td className={classes.month_cell}>
                 <Typography variant="body2">
-                  {getMonthByIndex(elem.paymentDate.getMonth())}
+                  {getMonth(elem.paymentDate, locale)}
                 </Typography>
               </td>
               <td className={classes.table_cell}>

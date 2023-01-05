@@ -128,22 +128,8 @@ export const groupPaymentsByYear = (payments) => {
   });
 };
 
-export const getMonthByIndex = (monthIndex) => {
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  return months.at(monthIndex);
+export const getMonth = (date, locale) => {
+  return new Intl.DateTimeFormat(locale, { month: 'short' }).format(date);
 };
 
 export const getNthPaymentDate = (startDate, installmentNumber) => {
