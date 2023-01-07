@@ -164,3 +164,42 @@ export const getCurrencySymbol = (locale, currency) => {
     .replace(/\d/g, '')
     .trim();
 };
+
+export const validateLoanAmount = (loanAmount) => {
+  const isInvalid = loanAmount < 100 || loanAmount > 1000000000;
+  let errorText = '';
+  if (loanAmount === '') {
+    errorText = 'Loan amount is required';
+  } else if (loanAmount < 100) {
+    errorText = 'Minimum loan amount is 100';
+  } else if (loanAmount > 1000000000) {
+    errorText = 'Maximum loan amount is 1000000000';
+  }
+  return { isInvalid, errorText };
+};
+
+export const validateInterestRate = (interestRate) => {
+  const isInvalid = interestRate < 1 || interestRate > 50;
+  let errorText = '';
+  if (interestRate === '') {
+    errorText = 'Interest rate is required';
+  } else if (interestRate < 1) {
+    errorText = 'Minimum interest rate is 1%';
+  } else if (interestRate > 50) {
+    errorText = 'Maximum interest rate is 50%';
+  }
+  return { isInvalid, errorText };
+};
+
+export const validateNumberOfYears = (numberOfYears) => {
+  const isInvalid = numberOfYears < 1 || numberOfYears > 100;
+  let errorText = '';
+  if (numberOfYears === '') {
+    errorText = 'Loan tenure is required';
+  } else if (numberOfYears < 1) {
+    errorText = 'Minimum loan tenure is 1 year';
+  } else if (numberOfYears > 100) {
+    errorText = 'Maximum loan tenure is 50 years';
+  }
+  return { isInvalid, errorText };
+};

@@ -8,6 +8,7 @@ import classes from './App.module.css';
 
 function App() {
   const [emiParams, setEmiParams] = useState({});
+  const [showEmiPlans, setShowEmiPlans] = useState(true);
   const [userPreference, setUserPreference] = useState({
     currency: 'USD',
     locale: 'en-US',
@@ -20,13 +21,29 @@ function App() {
       />
       <main className={classes.main_container}>
         <EmiParameters
-          onChangeEmiParams={(params) => {
-            setEmiParams(params);
+          onChangeEmiParams={(data) => {
+            if (data.isInvalid) {
+              setShowEmiPlans(false);
+            } else {
+              setEmiParams(data.emiParameters);
+              setShowEmiPlans(true);
+            }
           }}
         />
-        <EmiPlans emiParams={emiParams} />
+        {showEmiPlans === true ? (
+          <EmiPlans emiParams={emiParams} />
+        ) : (
+          <div className={classes.error_image_container}>
+            <img
+              className={classes.error_image}
+              src="/error.jpg"
+              width="250px"
+              alt="error image"
+            />
+          </div>
+        )}
       </main>
-      <Footer />
+      <Footer alignBottom={showEmiPlans} />
     </UserPreferenceContext.Provider>
   );
 }
