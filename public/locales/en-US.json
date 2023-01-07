@@ -22,7 +22,7 @@
   },
   "acc.plan": {
     "benefits.amount.text": "You could save",
-    "benefits.tenure.text": "Installments reduced by",
+    "benefits.tenure.text": "And you could pay off the loan in",
     "increase.emi.text": "increase in EMI every year",
     "prepayment.text": "Pay extra",
     "prepayment.yearly": "yearly",
@@ -37,5 +37,10 @@
     "interest": "Interest",
     "prepayment": "Prepayment",
     "remaining.loan": "Remaining Loan"
-  }
+  },
+  "ok": "Okay",
+  "years": "years",
+  "year": "year",
+  "months": "months",
+  "month": "month"
 }

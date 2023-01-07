@@ -136,17 +136,20 @@ function EmiPlans(props) {
   };
 
   const getInstallmentsReducedBy = () => {
-    const regularPlanInstallments =
-      (regularEmiPlan && regularEmiPlan.numberOfInstallments) || 0;
-    const accPlanInstallments =
+    const numberOfInstallments =
       (acceleratedEmi &&
         acceleratedEmi.plan &&
         acceleratedEmi.plan.numberOfInstallments) ||
       0;
-    const numberOfInstallments = regularPlanInstallments - accPlanInstallments;
-    return `${Math.floor(numberOfInstallments / 12)} years & ${
-      numberOfInstallments % 12
-    } months`;
+    const numberOfYears = Math.floor(numberOfInstallments / 12);
+    const numberOfMonths = numberOfInstallments % 12;
+    return numberOfMonths > 0
+      ? `${numberOfYears} ${
+          numberOfYears === 1 ? t('year') : t('years')
+        } & ${numberOfMonths} ${
+          numberOfMonths === 1 ? t('month') : t('months')
+        }`
+      : `${numberOfYears} ${numberOfYears === 1 ? t('year') : t('years')}`;
   };
 
   const regularEmiChartData = {
