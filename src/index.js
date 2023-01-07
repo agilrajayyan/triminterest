@@ -7,13 +7,13 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCFY2AiOiV9jTaHml9s7TC8IM2BRFgZrVk',
-  authDomain: 'slayinterest.firebaseapp.com',
-  projectId: 'slayinterest',
-  storageBucket: 'slayinterest.appspot.com',
-  messagingSenderId: '88321934137',
-  appId: '1:88321934137:web:9d65f52a357dea14351ee8',
-  measurementId: 'G-TQWYBM5PSG',
+  apiKey: 'AIzaSyAjVUOx3Sf74Ft-8qPlEbJkgzLxpaA9xMk',
+  authDomain: 'triminterest.firebaseapp.com',
+  projectId: 'triminterest',
+  storageBucket: 'triminterest.appspot.com',
+  messagingSenderId: '198124821997',
+  appId: '1:198124821997:web:76c701ef8940d0d2e45be4',
+  measurementId: 'G-ZRKY1BSMTB',
 };
 const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
