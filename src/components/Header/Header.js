@@ -39,6 +39,7 @@ function Header(props) {
 
   const updateLocale = (value) => {
     setLocale(value);
+    i18n.changeLanguage(value.code);
     localStorage.setItem('locale', JSON.stringify(value));
   };
 
@@ -54,6 +55,7 @@ function Header(props) {
     if (storedCurrency && storedLocale) {
       setCurrency(JSON.parse(storedCurrency));
       setLocale(JSON.parse(storedLocale));
+      i18n.changeLanguage(JSON.parse(storedLocale).code);
       setShowBackdrop(false);
       return;
     }
@@ -104,7 +106,6 @@ function Header(props) {
   const localeChangeHandler = (event, selectedLocale) => {
     if (selectedLocale) {
       updateLocale(selectedLocale);
-      i18n.changeLanguage(selectedLocale.code);
     }
   };
 
