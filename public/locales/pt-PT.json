@@ -1,0 +1,63 @@
+{
+  "plan": {
+    "normal": "Plano normal",
+    "accelerated": "Plano de pagamento rápido",
+    "acc.help.text": "Com o Plano de pagamento rápido, você pode economizar muito em juros aumentando o valor do EMI todos os anos e fazendo pagamentos antecipados."
+  },
+  "preference": {
+    "title": "Preferências",
+    "currency.label": "Moeda",
+    "language.label": "Língua"
+  },
+  "emi.params": {
+    "loan.amount": "Montante do empréstimo",
+    "interest.rate": "Taxa de juro",
+    "loan.tenure": "Duração do empréstimo",
+    "years": "Anos",
+    "start.date": "EMI começa em"
+  },
+  "chart.legend": {
+    "principal": "Quantia principal",
+    "interest": "Interesse"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "Você pode economizar",
+    "benefits.tenure.text": "E você poderia pagar o empréstimo em",
+    "increase.emi.text": "aumento do EMI a cada ano",
+    "prepayment.text": "Pagar mais",
+    "prepayment.yearly": "anual",
+    "prepayment.quarterly": "trimestral",
+    "prepayment.monthly": "mensais",
+    "prepayment.info.text": "Certifique-se de ler os termos e condições do seu empréstimo. Alguns esquemas de empréstimo podem não permitir que o cliente faça um pré-pagamento e outros cobram taxas sempre que o cliente faz um pré-pagamento."
+  },
+  "table.column": {
+    "month": "Mês",
+    "emi": "EMI",
+    "principal": "Quantia principal",
+    "interest": "Interesse",
+    "prepayment": "Pré-pagamento",
+    "remaining.loan": "Empréstimo restante"
+  },
+  "ok": "Certo",
+  "years": "anos",
+  "year": "ano",
+  "months": "meses",
+  "month": "mês",
+  "validation": {
+    "amount": {
+      "required": "O montante do empréstimo é obrigatório",
+      "min": "O montante mínimo do empréstimo é 100",
+      "max": "O montante máximo do empréstimo é 1000000000"
+    },
+    "interest": {
+      "required": "A taxa de juro é obrigatória",
+      "min": "A taxa mínima de juro é 1%",
+      "max": "A taxa máxima de juro é 50%"
+    },
+    "tenure": {
+      "required": "A duração do empréstimo é obrigatória",
+      "min": "A duração mínima do empréstimo é de 1 ano",
+      "max": "A duração máxima do empréstimo é de 50 anos"
+    }
+  }
+}

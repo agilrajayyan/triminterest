@@ -1,0 +1,63 @@
+{
+  "plan": {
+    "normal": "Normal plan",
+    "accelerated": "Pay fast plan",
+    "acc.help.text": "With the Pay fast plan, you can save significantly on interest by increasing the EMI amount every year and by making prepayments."
+  },
+  "preference": {
+    "title": "Preferences",
+    "currency.label": "Currency",
+    "language.label": "Language"
+  },
+  "emi.params": {
+    "loan.amount": "Loan amount",
+    "interest.rate": "Interest rate",
+    "loan.tenure": "Loan tenure",
+    "years": "Years",
+    "start.date": "EMI starts on"
+  },
+  "chart.legend": {
+    "principal": "Principal",
+    "interest": "Interest"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "You could save",
+    "benefits.tenure.text": "And you could pay off the loan in",
+    "increase.emi.text": "increase in EMI every year",
+    "prepayment.text": "Pay extra",
+    "prepayment.yearly": "yearly",
+    "prepayment.quarterly": "quarterly",
+    "prepayment.monthly": "monthly",
+    "prepayment.info.text": "Please be sure to read the terms and conditions of your loan. Some loan schemes may not allow prepayments, and some others may charge fees whenever a prepayment is made."
+  },
+  "table.column": {
+    "month": "Month",
+    "emi": "EMI",
+    "principal": "Principal",
+    "interest": "Interest",
+    "prepayment": "Prepayment",
+    "remaining.loan": "Remaining loan"
+  },
+  "ok": "OK",
+  "years": "years",
+  "year": "year",
+  "months": "months",
+  "month": "month",
+  "validation": {
+    "amount": {
+      "required": "Loan amount is required",
+      "min": "Minimum loan amount is 100",
+      "max": "Maximum loan amount is 1000000000"
+    },
+    "interest": {
+      "required": "Interest rate is required",
+      "min": "Minimum interest rate is 1%",
+      "max": "Maximum interest rate is 50%"
+    },
+    "tenure": {
+      "required": "Loan tenure is required",
+      "min": "Minimum loan tenure is 1 year",
+      "max": "Maximum loan tenure is 50 years"
+    }
+  }
+}

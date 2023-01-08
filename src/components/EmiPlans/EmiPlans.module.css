@@ -1,0 +1,87 @@
+.emi_summary_container {
+  gap: 3.12rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@media (width <= 1000px) {
+  .emi_summary_container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+
+.regular_emi_container {
+  padding-top: 1.56rem;
+}
+
+.regular_emi {
+  margin-top: 4rem;
+}
+
+.acc_emi_plan_container {
+  background: linear-gradient(
+    90deg,
+    hsla(213, 72%, 16%, 1) 0%,
+    hsla(215, 66%, 22%, 1) 100%
+  );
+  color: #e5effb !important;
+  padding-top: 1.56rem;
+  border-radius: 2.5rem !important;
+}
+
+@media (width <=600px) {
+  .acc_emi_plan_container {
+    width: 100vw;
+  }
+}
+
+.acc_emi_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.additional_payments {
+  margin: 1.87rem;
+}
+
+@media (width <= 500px) {
+  .additional_payments {
+    margin: 1.4rem;
+  }
+}
+
+.benefits_container {
+  margin-bottom: 1.4rem;
+}
+
+.doughtnut_chart {
+  position: relative;
+  height: 18.75rem;
+  width: 18.75rem;
+  margin: 0 auto;
+}
+
+.card_content {
+  padding: 1rem 1.5rem;
+}
+
+.interest_saved {
+  font-weight: bold !important;
+  margin-bottom: 0.62rem !important;
+}
+
+.installments_reduced_by {
+  font-weight: bold !important;
+}
+
+@media (width <= 500px) {
+  .interest_saved,
+  .installments_reduced_by {
+    font-size: 2rem !important;
+  }
+}

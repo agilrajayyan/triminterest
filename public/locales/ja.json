@@ -1,0 +1,63 @@
+{
+  "plan": {
+    "normal": "通常プラン",
+    "accelerated": "早期支払いプラン",
+    "acc.help.text": "早期支払いプランを使用すると、年々EMI額を増やし、前払いをすることで、利子を大幅に節約することができます。"
+  },
+  "preference": {
+    "title": "設定",
+    "currency.label": "通貨",
+    "language.label": "言語"
+  },
+  "emi.params": {
+    "loan.amount": "ローン金額",
+    "interest.rate": "利率",
+    "loan.tenure": "ローン期間",
+    "years": "年",
+    "start.date": "EMI開始日"
+  },
+  "chart.legend": {
+    "principal": "元本",
+    "interest": "利子"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "節約できます。",
+    "benefits.tenure.text": "ローンをこの期間で払い清すことができます：",
+    "increase.emi.text": "毎年EMI増加",
+    "prepayment.text": "追加で支払う",
+    "prepayment.yearly": "年間",
+    "prepayment.quarterly": "四半期",
+    "prepayment.monthly": "月間",
+    "prepayment.info.text": "ローン契約条件をよく読んでください。一部のローンスキームでは前払いができず、また一部の場合は前払いをするたびに料金が発生することがあります。"
+  },
+  "table.column": {
+    "month": "月",
+    "emi": "EMI",
+    "principal": "元本",
+    "interest": "利子",
+    "prepayment": "前払い",
+    "remaining.loan": "残りローン"
+  },
+  "ok": "わかった",
+  "years": "年",
+  "year": "年",
+  "months": "ヶ月",
+  "month": "ヶ月",
+  "validation": {
+    "amount": {
+      "required": "借入金額必須",
+      "min": "最小貸款額は100です",
+      "max": "最大貸款額は1000000000です"
+    },
+    "interest": {
+      "required": "利率が必要です",
+      "min": "最小利率は1％です",
+      "max": "最大利率は50％です"
+    },
+    "tenure": {
+      "required": "貸款期間が必要です",
+      "min": "最小貸款期間は1年です",
+      "max": "最大貸款期間は50年です"
+    }
+  }
+}

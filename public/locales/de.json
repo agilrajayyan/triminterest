@@ -1,0 +1,63 @@
+{
+  "plan": {
+    "normal": "Normaler Zahlungsplan",
+    "accelerated": "Schneller Bezahlplan",
+    "acc.help.text": "Mit dem Pay Fast-Plan können Sie viel Zinsen sparen, indem Sie den EMI-Betrag jedes Jahr erhöhen und Vorauszahlungen leisten."
+  },
+  "preference": {
+    "title": "Einstellungen",
+    "currency.label": "Währung",
+    "language.label": "Sprache"
+  },
+  "emi.params": {
+    "loan.amount": "Darlehensbetrag",
+    "interest.rate": "Zinssatz",
+    "loan.tenure": "Darlehenslaufzeit",
+    "years": "Jahre",
+    "start.date": "Die Ratenzahlung beginnt am"
+  },
+  "chart.legend": {
+    "principal": "Hauptbetrag",
+    "interest": "Zinsen"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "Sie könnten sparen",
+    "benefits.tenure.text": "Und Sie könnten das Darlehen in abbezahlen",
+    "increase.emi.text": "Anstieg der EMI jedes Jahr",
+    "prepayment.text": "Zusätzlich zahlen",
+    "prepayment.yearly": "jährlich",
+    "prepayment.quarterly": "vierteljährlich",
+    "prepayment.monthly": "monatlich",
+    "prepayment.info.text": "Lesen Sie sich die Bedingungen Ihres Darlehens genau durch. Manche Darlehensprogramme erlauben keine Vorauszahlungen und andere berechnen Gebühren, wenn der Kunde eine Vorauszahlung leistet."
+  },
+  "table.column": {
+    "month": "Monat",
+    "emi": "EMI",
+    "principal": "Hauptbetrag",
+    "interest": "Zinsen",
+    "prepayment": "Vorauszahlung",
+    "remaining.loan": "Verbleibendes Darlehen"
+  },
+  "ok": "OK",
+  "years": "Jahre",
+  "year": "Jahr",
+  "months": "Monate",
+  "month": "Monat",
+  "validation": {
+    "amount": {
+      "required": "Darlehenshöhe erforderlich",
+      "min": "Mindestdarlehenshöhe beträgt 100",
+      "max": "Maximale Darlehenshöhe beträgt 1000000000"
+    },
+    "interest": {
+      "required": "Zinssatz erforderlich",
+      "min": "Mindestzinssatz beträgt 1%",
+      "max": "Maximaler Zinssatz beträgt 50%"
+    },
+    "tenure": {
+      "required": "Laufzeit des Darlehens erforderlich",
+      "min": "Minimale Darlehenslaufzeit beträgt 1 Jahr",
+      "max": "Maximale Darlehenslaufzeit beträgt 50 Jahre"
+    }
+  }
+}

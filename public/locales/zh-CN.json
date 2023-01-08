@@ -1,0 +1,63 @@
+{
+  "plan": {
+    "normal": "普通计划",
+    "accelerated": "快速支付计划",
+    "acc.help.text": "通过快速支付计划，您可以通过每年增加 EMI 金额和预先支付来节省大量利息。"
+  },
+  "preference": {
+    "title": "偏好",
+    "currency.label": "货币",
+    "language.label": "语言"
+  },
+  "emi.params": {
+    "loan.amount": "贷款金额",
+    "interest.rate": "利率",
+    "loan.tenure": "贷款期限",
+    "years": "年",
+    "start.date": "分期付款开始于"
+  },
+  "chart.legend": {
+    "principal": "本金",
+    "interest": "利息"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "您可以省下",
+    "benefits.tenure.text": "还清贷款",
+    "increase.emi.text": "每年增加的 EMI",
+    "prepayment.text": "多支付",
+    "prepayment.yearly": "每年",
+    "prepayment.quarterly": "每季度",
+    "prepayment.monthly": "每月",
+    "prepayment.info.text": "确保阅读贷款条款和条件。一些贷款计划可能不允许客户进行预付款，而另一些贷款计划则会在客户进行预付款时收取费用。"
+  },
+  "table.column": {
+    "month": "月",
+    "emi": "EMI",
+    "principal": "本金",
+    "interest": "利息",
+    "prepayment": "预付款",
+    "remaining.loan": "剩余贷款"
+  },
+  "ok": "好",
+  "years": "年",
+  "year": "年",
+  "months": "月",
+  "month": "月",
+  "validation": {
+    "amount": {
+      "required": "贷款金额是必需的",
+      "min": "最低贷款金额是100",
+      "max": "最高贷款金额是1000000000"
+    },
+    "interest": {
+      "required": "利率是必需的",
+      "min": "最低利率是1％",
+      "max": "最高利率是50％"
+    },
+    "tenure": {
+      "required": "贷款期限是必需的",
+      "min": "最短贷款期限是1年",
+      "max": "最长贷款期限是50年"
+    }
+  }
+}

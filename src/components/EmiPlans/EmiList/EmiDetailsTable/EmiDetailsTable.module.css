@@ -1,0 +1,38 @@
+.table {
+  border-collapse: collapse;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.table_header_cell,
+.table_cell {
+  padding: 0.62rem;
+}
+
+.table_header_cell {
+  text-align: end;
+  /* background: #e4e4e7; */
+}
+
+.table_cell {
+  text-align: end;
+  cursor: pointer;
+}
+
+.month_cell {
+  text-align: start;
+}
+
+.row_light {
+  border-bottom: 0.06rem solid #eef4ed1f;
+}
+.row_dark {
+  border-bottom: 0.06rem solid #e0e0e0;
+}
+
+@media (width <= 500px) {
+  .principal_column,
+  .interest_column {
+    display: none;
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "plan": {
+    "normal": "Plan de normal",
+    "accelerated": "Plan de pago rápido",
+    "acc.help.text": "Con el plan Pagar rápido, puede ahorrar mucho en intereses aumentando la cantidad de EMI cada año y haciendo prepagos."
+  },
+  "preference": {
+    "title": "preferencias",
+    "currency.label": "Divisa",
+    "language.label": "Idioma"
+  },
+  "emi.params": {
+    "loan.amount": "Monto del préstamo",
+    "interest.rate": "Tasa de interés",
+    "loan.tenure": "Tenencia del préstamo",
+    "years": "Años",
+    "start.date": "EMI comienza el"
+  },
+  "chart.legend": {
+    "principal": "Director de escuela",
+    "interest": "Interés"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "podrías ahorrar",
+    "benefits.tenure.text": "Y podrías cerrar el préstamo en",
+    "increase.emi.text": "de aumento en EMI cada año",
+    "prepayment.text": "Pago extra",
+    "prepayment.yearly": "anual",
+    "prepayment.quarterly": "trimestral",
+    "prepayment.monthly": "mensual",
+    "prepayment.info.text": "Asegúrese de leer los términos y condiciones de su préstamo. Es posible que algunos esquemas de préstamos no permitan que el cliente realice un pago anticipado y otros cobran tarifas cada vez que el cliente realiza un pago anticipado."
+  },
+  "table.column": {
+    "month": "Mes",
+    "emi": "EMI",
+    "principal": "Director de escuela",
+    "interest": "Interés",
+    "prepayment": "Pago adicional",
+    "remaining.loan": "Préstamo restante"
+  },
+  "ok": "Okey",
+  "years": "años",
+  "year": "año",
+  "months": "meses",
+  "month": "mes",
+  "validation": {
+    "amount": {
+      "required": "Se requiere el monto del préstamo",
+      "min": "El monto mínimo del préstamo es 100",
+      "max": "El monto máximo del préstamo es 1000000000"
+    },
+    "interest": {
+      "required": "Se requiere la tasa de interés",
+      "min": "La tasa de interés mínima es del 1%",
+      "max": "La tasa de interés máxima es del 50%"
+    },
+    "tenure": {
+      "required": "Se requiere el plazo del préstamo",
+      "min": "El plazo mínimo del préstamo es de 1 año",
+      "max": "El plazo máximo del préstamo es de 50 años"
+    }
+  }
+}
