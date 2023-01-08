@@ -12,7 +12,6 @@ import {
   InputAdornment,
   Typography,
   FormControl,
-  Tooltip,
 } from '@mui/material';
 import CommonDialog from '../../CommonDialog/CommonDialog';
 import { useTranslation } from 'react-i18next';

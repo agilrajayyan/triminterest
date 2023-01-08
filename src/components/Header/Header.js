@@ -10,6 +10,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useTranslation } from 'react-i18next';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const darkTheme = createTheme({
   palette: {
@@ -24,31 +26,90 @@ const languages = [
 
 function Header(props) {
   const [currencies, setCurrencies] = useState([]);
-  const [currency, setCurrency] = useState(() => {
-    const fallbackValue = {
+  const [currency, setCurrency] = useState(null);
+  const [locale, setLocale] = useState(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [showBackdrop, setShowBackdrop] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const updateCurrency = (value) => {
+    setCurrency(value);
+    localStorage.setItem('currency', JSON.stringify(value));
+  };
+
+  const updateLocale = (value) => {
+    setLocale(value);
+    localStorage.setItem('locale', JSON.stringify(value));
+  };
+
+  const fetchData = async () => {
+    setShowBackdrop(true);
+    const { currencies: currenciesResponse } = await (
+      await fetch('currencies.json')
+    ).json();
+    setCurrencies(currenciesResponse);
+
+    const storedCurrency = localStorage.getItem('currency');
+    const storedLocale = localStorage.getItem('locale');
+    if (storedCurrency && storedLocale) {
+      setCurrency(JSON.parse(storedCurrency));
+      setLocale(JSON.parse(storedLocale));
+      setShowBackdrop(false);
+      return;
+    }
+
+    const fallbackCurrency = {
       name: 'US Dollar',
       code: 'USD',
       flag: 'https://flagcdn.com/us.svg',
     };
-    const storedCurrency = localStorage.getItem('currency');
-    return storedCurrency ? JSON.parse(storedCurrency) : fallbackValue;
-  });
-  const [locale, setLocale] = useState(() => {
-    const fallbackValue = { code: 'en-US', name: 'English (US)' };
-    const storedLocale = localStorage.getItem('locale');
-    return storedLocale ? JSON.parse(storedLocale) : fallbackValue;
-  });
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { t, i18n } = useTranslation();
+    const fallbackLocale = { code: 'en-US', name: 'English (US)' };
 
-  const fetchCurrencies = async () => {
-    const response = await fetch('currencies.json');
-    const responseJson = await response.json();
-    setCurrencies(responseJson.currencies);
+    try {
+      const { currency: ipapiCurrencyCode, languages: ipapiLanguages } = await (
+        await fetch('https://ipapi.co/json')
+      ).json();
+
+      const currencyIndex = currenciesResponse.findIndex(
+        (currencyElem) => currencyElem.code === ipapiCurrencyCode
+      );
+      if (currencyIndex !== -1) {
+        updateCurrency(currenciesResponse[currencyIndex]);
+      } else {
+        updateCurrency(fallbackCurrency);
+      }
+
+      const languageIndex = languages.findIndex(
+        (languageElem) => languageElem.code === ipapiLanguages[0]
+      );
+      if (languageIndex !== -1) {
+        updateLocale(languages[languageIndex]);
+      } else {
+        updateLocale(fallbackLocale);
+      }
+    } catch (error) {
+      setShowBackdrop(false);
+      updateCurrency(fallbackCurrency);
+      updateLocale(fallbackLocale);
+    }
+    setShowBackdrop(false);
+  };
+
+  const currencyChangeHandler = (event, selectedCurrency) => {
+    if (selectedCurrency) {
+      updateCurrency(selectedCurrency);
+    }
+  };
+
+  const localeChangeHandler = (event, selectedLocale) => {
+    if (selectedLocale) {
+      updateLocale(selectedLocale);
+      i18n.changeLanguage(selectedLocale.code);
+    }
   };
 
   useEffect(() => {
-    fetchCurrencies();
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -57,9 +118,6 @@ function Header(props) {
         currency: currency.code,
         locale: locale.code,
       });
-      localStorage.setItem('currency', JSON.stringify(currency));
-      localStorage.setItem('locale', JSON.stringify(locale));
-      i18n.changeLanguage(locale.code);
     }
   }, [currency, locale]);
 
@@ -68,7 +126,7 @@ function Header(props) {
       id="currency-auto-complete"
       sx={{ width: 230 }}
       value={currency}
-      onChange={(event, newValue) => setCurrency(newValue)}
+      onChange={currencyChangeHandler}
       options={currencies}
       getOptionLabel={(option) => option.name}
       renderOption={(props, option) => (
@@ -109,10 +167,7 @@ function Header(props) {
       id="locale-auto-complete"
       sx={{ width: 230 }}
       value={locale}
-      onChange={(event, newValue) => {
-        setLocale(newValue);
-        i18n.changeLanguage(newValue.code);
-      }}
+      onChange={localeChangeHandler}
       options={languages}
       getOptionLabel={(option) => option.name}
       renderOption={(props, option) => (
@@ -177,6 +232,12 @@ function Header(props) {
           </div>
         </Box>
       </SwipeableDrawer>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={showBackdrop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </ThemeProvider>
   );
 }
