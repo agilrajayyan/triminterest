@@ -1,0 +1,46 @@
+{
+  "plan": {
+    "normal": "Piano normale",
+    "accelerated": "Paga piano veloce",
+    "acc.help.text": "Con il piano veloce, puoi risparmiare molto sugli interessi aumentando l'importo della rata ogni anno e facendo prepagamenti."
+  },
+  "preference": {
+    "title": "Preferenze",
+    "currency.label": "Valuta",
+    "language.label": "Lingua"
+  },
+  "emi.params": {
+    "loan.amount": "Importo del prestito",
+    "interest.rate": "Tasso di interesse",
+    "loan.tenure": "Durata del prestito",
+    "years": "Anni",
+    "start.date": "La rata inizia il"
+  },
+  "chart.legend": {
+    "principal": "Principale",
+    "interest": "Interesse"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "Potresti risparmiare",
+    "benefits.tenure.text": "E potresti rimborsare il prestito in",
+    "increase.emi.text": "aumento della rata ogni anno",
+    "prepayment.text": "Paga in più",
+    "prepayment.yearly": "annualmente",
+    "prepayment.quarterly": "trimestralmente",
+    "prepayment.monthly": "mensilmente",
+    "prepayment.info.text": "Assicurati di leggere i termini e le condizioni del tuo prestito. Alcuni piani di prestito potrebbero non consentire al cliente di fare un prepagamento e altri potrebbero addebitare commissioni ogni volta che il cliente fa un prepagamento."
+  },
+  "table.column": {
+    "month": "Mese",
+    "emi": "Rata",
+    "principal": "Principale",
+    "interest": "Interesse",
+    "prepayment": "Pre-pagamento",
+    "remaining.loan": "Prestito residuo"
+  },
+  "ok": "Ok",
+  "years": "anni",
+  "year": "anno",
+  "months": "mesi",
+  "month": "mese"
+}

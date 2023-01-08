@@ -19,9 +19,16 @@ const darkTheme = createTheme({
   },
 });
 const languages = [
+  { code: 'en-IN', name: 'English (India)' },
   { code: 'en-US', name: 'English (US)' },
-  { code: 'es-ES', name: 'Spanish' },
+  { code: 'zh-CN', name: 'Chinese' },
+  { code: 'fr-FR', name: 'French' },
+  { code: 'de', name: 'German' },
+  { code: 'it-IT', name: 'Italian' },
+  { code: 'ja', name: 'Japanese' },
   { code: 'pt-PT', name: 'Portuguese' },
+  { code: 'ru', name: 'Russian' },
+  { code: 'es-ES', name: 'Spanish' },
 ];
 
 function Header(props) {
@@ -82,7 +89,7 @@ function Header(props) {
       }
 
       const languageIndex = languages.findIndex(
-        (languageElem) => languageElem.code === ipapiLanguages[0]
+        (languageElem) => languageElem.code === ipapiLanguages.split(',')[0]
       );
       if (languageIndex !== -1) {
         updateLocale(languages[languageIndex]);

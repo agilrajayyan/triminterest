@@ -1,0 +1,46 @@
+{
+  "plan": {
+    "normal": "Plan de paiement normal",
+    "accelerated": "Plan de paiement rapide",
+    "acc.help.text": "Avec le plan de paiement rapide, vous pouvez économiser beaucoup d'intérêts en augmentant le montant de votre mensualité chaque année et en effectuant des remboursements anticipés."
+  },
+  "preference": {
+    "title": "Préférences",
+    "currency.label": "Devise",
+    "language.label": "Langue"
+  },
+  "emi.params": {
+    "loan.amount": "Montant du prêt",
+    "interest.rate": "Taux d'intérêt",
+    "loan.tenure": "Durée du prêt",
+    "years": "Années",
+    "start.date": "EMI démarre le"
+  },
+  "chart.legend": {
+    "principal": "Le montant principal",
+    "interest": "Intérêt"
+  },
+  "acc.plan": {
+    "benefits.amount.text": "Vous pourriez économiser",
+    "benefits.tenure.text": "Et vous pourriez rembourser votre prêt en",
+    "increase.emi.text": "augmentation de la mensualité chaque année",
+    "prepayment.text": "Payer en plus",
+    "prepayment.yearly": "annuellement",
+    "prepayment.quarterly": "trimestriellement",
+    "prepayment.monthly": "mensuellement",
+    "prepayment.info.text": "Assurez-vous de lire les termes et conditions de votre prêt. Certains prêts peuvent ne pas autoriser les remboursements anticipés et d'autres peuvent facturer des frais chaque fois que vous effectuez un remboursement anticipé."
+  },
+  "table.column": {
+    "month": "Mois",
+    "emi": "Mensualité",
+    "principal": "Principal",
+    "interest": "Intérêt",
+    "prepayment": "Remboursement anticipé",
+    "remaining.loan": "Prêt restant"
+  },
+  "ok": "D'accord",
+  "years": "années",
+  "year": "année",
+  "months": "mois",
+  "month": "mois"
+}
