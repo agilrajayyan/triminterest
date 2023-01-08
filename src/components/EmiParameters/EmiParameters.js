@@ -46,6 +46,8 @@ const emiParametersReducer = (state, action) => {
         ...state,
         emiStartDate: action.payload,
       };
+    default:
+      return;
   }
 };
 
@@ -86,6 +88,7 @@ function EmiParameters(props) {
         interestRate.isInvalid ||
         numberOfYears.isInvalid,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emiParameters]);
 
   return (

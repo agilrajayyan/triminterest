@@ -38,7 +38,7 @@ function App() {
               className={classes.error_image}
               src="/error.jpg"
               width="250px"
-              alt="error image"
+              alt="Some or all of the input fields are invalid"
             />
           </div>
         )}

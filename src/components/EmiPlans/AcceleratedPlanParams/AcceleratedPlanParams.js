@@ -46,6 +46,7 @@ function AcceleratedPlanParams(props) {
       emiHikeRate: emiHikeRate.enabled ? emiHikeRate : null,
       regularPrepayment: regularPrepayment.enabled ? regularPrepayment : null,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emiHikeRate, regularPrepayment]);
 
   return (

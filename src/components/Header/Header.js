@@ -50,60 +50,6 @@ function Header(props) {
     localStorage.setItem('locale', JSON.stringify(value));
   };
 
-  const fetchData = async () => {
-    setShowBackdrop(true);
-    const { currencies: currenciesResponse } = await (
-      await fetch('currencies.json')
-    ).json();
-    setCurrencies(currenciesResponse);
-
-    const storedCurrency = localStorage.getItem('currency');
-    const storedLocale = localStorage.getItem('locale');
-    if (storedCurrency && storedLocale) {
-      setCurrency(JSON.parse(storedCurrency));
-      setLocale(JSON.parse(storedLocale));
-      i18n.changeLanguage(JSON.parse(storedLocale).code);
-      setShowBackdrop(false);
-      return;
-    }
-
-    const fallbackCurrency = {
-      name: 'US Dollar',
-      code: 'USD',
-      flag: 'https://flagcdn.com/us.svg',
-    };
-    const fallbackLocale = { code: 'en-US', name: 'English (US)' };
-
-    try {
-      const { currency: ipapiCurrencyCode, languages: ipapiLanguages } = await (
-        await fetch('https://ipapi.co/json')
-      ).json();
-
-      const currencyIndex = currenciesResponse.findIndex(
-        (currencyElem) => currencyElem.code === ipapiCurrencyCode
-      );
-      if (currencyIndex !== -1) {
-        updateCurrency(currenciesResponse[currencyIndex]);
-      } else {
-        updateCurrency(fallbackCurrency);
-      }
-
-      const languageIndex = languages.findIndex(
-        (languageElem) => languageElem.code === ipapiLanguages.split(',')[0]
-      );
-      if (languageIndex !== -1) {
-        updateLocale(languages[languageIndex]);
-      } else {
-        updateLocale(fallbackLocale);
-      }
-    } catch (error) {
-      setShowBackdrop(false);
-      updateCurrency(fallbackCurrency);
-      updateLocale(fallbackLocale);
-    }
-    setShowBackdrop(false);
-  };
-
   const currencyChangeHandler = (event, selectedCurrency) => {
     if (selectedCurrency) {
       updateCurrency(selectedCurrency);
@@ -117,7 +63,60 @@ function Header(props) {
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      setShowBackdrop(true);
+      const { currencies: currenciesResponse } = await (
+        await fetch('currencies.json')
+      ).json();
+      setCurrencies(currenciesResponse);
+
+      const storedCurrency = localStorage.getItem('currency');
+      const storedLocale = localStorage.getItem('locale');
+      if (storedCurrency && storedLocale) {
+        setCurrency(JSON.parse(storedCurrency));
+        setLocale(JSON.parse(storedLocale));
+        i18n.changeLanguage(JSON.parse(storedLocale).code);
+        setShowBackdrop(false);
+        return;
+      }
+
+      const fallbackCurrency = {
+        name: 'US Dollar',
+        code: 'USD',
+        flag: 'https://flagcdn.com/us.svg',
+      };
+      const fallbackLocale = { code: 'en-US', name: 'English (US)' };
+
+      try {
+        const { currency: ipapiCurrencyCode, languages: ipapiLanguages } =
+          await (await fetch('https://ipapi.co/json')).json();
+
+        const currencyIndex = currenciesResponse.findIndex(
+          (currencyElem) => currencyElem.code === ipapiCurrencyCode
+        );
+        if (currencyIndex !== -1) {
+          updateCurrency(currenciesResponse[currencyIndex]);
+        } else {
+          updateCurrency(fallbackCurrency);
+        }
+
+        const languageIndex = languages.findIndex(
+          (languageElem) => languageElem.code === ipapiLanguages.split(',')[0]
+        );
+        if (languageIndex !== -1) {
+          updateLocale(languages[languageIndex]);
+        } else {
+          updateLocale(fallbackLocale);
+        }
+      } catch (error) {
+        setShowBackdrop(false);
+        updateCurrency(fallbackCurrency);
+        updateLocale(fallbackLocale);
+      }
+      setShowBackdrop(false);
+    };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -127,6 +126,7 @@ function Header(props) {
         locale: locale.code,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency, locale]);
 
   const currencyInput = (
