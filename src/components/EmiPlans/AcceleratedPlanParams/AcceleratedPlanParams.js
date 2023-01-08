@@ -32,7 +32,7 @@ function AcceleratedPlanParams(props) {
   const [emiHikeRate, setEmiHikeRate] = useState({ enabled: true, value: 5 });
   const [regularPrepayment, setRegularPrepayment] = useState({
     enabled: false,
-    amount: 1000,
+    amount: 10000,
     interval: 'year',
   });
   const [isPrepaymentInfoDialogOpen, setIsPrepaymentInfoDialogOpen] =

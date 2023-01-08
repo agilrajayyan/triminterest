@@ -42,5 +42,22 @@
   "years": "años",
   "year": "año",
   "months": "meses",
-  "month": "mes"
+  "month": "mes",
+  "validation": {
+    "amount": {
+      "required": "Se requiere el monto del préstamo",
+      "min": "El monto mínimo del préstamo es 100",
+      "max": "El monto máximo del préstamo es 1000000000"
+    },
+    "interest": {
+      "required": "Se requiere la tasa de interés",
+      "min": "La tasa de interés mínima es del 1%",
+      "max": "La tasa de interés máxima es del 50%"
+    },
+    "tenure": {
+      "required": "Se requiere el plazo del préstamo",
+      "min": "El plazo mínimo del préstamo es de 1 año",
+      "max": "El plazo máximo del préstamo es de 50 años"
+    }
+  }
 }

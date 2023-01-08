@@ -42,5 +42,22 @@
   "years": "anos",
   "year": "ano",
   "months": "meses",
-  "month": "mês"
+  "month": "mês",
+  "validation": {
+    "amount": {
+      "required": "O montante do empréstimo é obrigatório",
+      "min": "O montante mínimo do empréstimo é 100",
+      "max": "O montante máximo do empréstimo é 1000000000"
+    },
+    "interest": {
+      "required": "A taxa de juro é obrigatória",
+      "min": "A taxa mínima de juro é 1%",
+      "max": "A taxa máxima de juro é 50%"
+    },
+    "tenure": {
+      "required": "A duração do empréstimo é obrigatória",
+      "min": "A duração mínima do empréstimo é de 1 ano",
+      "max": "A duração máxima do empréstimo é de 50 anos"
+    }
+  }
 }

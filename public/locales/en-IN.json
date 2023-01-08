@@ -42,5 +42,22 @@
   "years": "years",
   "year": "year",
   "months": "months",
-  "month": "month"
+  "month": "month",
+  "validation": {
+    "amount": {
+      "required": "Loan amount is required",
+      "min": "Minimum loan amount is 100",
+      "max": "Maximum loan amount is 1000000000"
+    },
+    "interest": {
+      "required": "Interest rate is required",
+      "min": "Minimum interest rate is 1%",
+      "max": "Maximum interest rate is 50%"
+    },
+    "tenure": {
+      "required": "Loan tenure is required",
+      "min": "Minimum loan tenure is 1 year",
+      "max": "Maximum loan tenure is 50 years"
+    }
+  }
 }

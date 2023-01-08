@@ -169,11 +169,11 @@ export const validateLoanAmount = (loanAmount) => {
   const isInvalid = loanAmount < 100 || loanAmount > 1000000000;
   let errorText = '';
   if (loanAmount === '') {
-    errorText = 'Loan amount is required';
+    errorText = 'validation.amount.required';
   } else if (loanAmount < 100) {
-    errorText = 'Minimum loan amount is 100';
+    errorText = 'validation.amount.min';
   } else if (loanAmount > 1000000000) {
-    errorText = 'Maximum loan amount is 1000000000';
+    errorText = 'validation.amount.max';
   }
   return { isInvalid, errorText };
 };
@@ -182,11 +182,11 @@ export const validateInterestRate = (interestRate) => {
   const isInvalid = interestRate < 1 || interestRate > 50;
   let errorText = '';
   if (interestRate === '') {
-    errorText = 'Interest rate is required';
+    errorText = 'validation.interest.required';
   } else if (interestRate < 1) {
-    errorText = 'Minimum interest rate is 1%';
+    errorText = 'validation.interest.min';
   } else if (interestRate > 50) {
-    errorText = 'Maximum interest rate is 50%';
+    errorText = 'validation.interest.max';
   }
   return { isInvalid, errorText };
 };
@@ -195,11 +195,11 @@ export const validateNumberOfYears = (numberOfYears) => {
   const isInvalid = numberOfYears < 1 || numberOfYears > 100;
   let errorText = '';
   if (numberOfYears === '') {
-    errorText = 'Loan tenure is required';
+    errorText = 'validation.tenure.required';
   } else if (numberOfYears < 1) {
-    errorText = 'Minimum loan tenure is 1 year';
+    errorText = 'validation.tenure.min';
   } else if (numberOfYears > 100) {
-    errorText = 'Maximum loan tenure is 50 years';
+    errorText = 'validation.tenure.max';
   }
   return { isInvalid, errorText };
 };

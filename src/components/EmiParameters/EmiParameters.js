@@ -96,7 +96,7 @@ function EmiParameters(props) {
         id="outlined-start-adornment"
         value={loanAmount.value}
         error={loanAmount.isInvalid}
-        helperText={loanAmount.errorText}
+        helperText={t(loanAmount.errorText)}
         onChange={(event) =>
           dispatch({ type: 'UPDATE_LOAN_AMOUNT', payload: event.target.value })
         }
@@ -114,7 +114,7 @@ function EmiParameters(props) {
         id="outlined-end-adornment"
         value={interestRate.value}
         error={interestRate.isInvalid}
-        helperText={interestRate.errorText}
+        helperText={t(interestRate.errorText)}
         onChange={(event) =>
           dispatch({
             type: 'UPDATE_INTEREST_RATE',
@@ -131,7 +131,7 @@ function EmiParameters(props) {
         id="outlined-end-adornment"
         value={numberOfYears.value}
         error={numberOfYears.isInvalid}
-        helperText={numberOfYears.errorText}
+        helperText={t(numberOfYears.errorText)}
         onChange={(event) =>
           dispatch({
             type: 'UPDATE_NUMBER_OF_YEARS',

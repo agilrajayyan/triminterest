@@ -42,5 +42,22 @@
   "years": "années",
   "year": "année",
   "months": "mois",
-  "month": "mois"
+  "month": "mois",
+  "validation": {
+    "amount": {
+      "required": "Le montant du prêt est requis",
+      "min": "Le montant minimum du prêt est de 100",
+      "max": "Le montant maximum du prêt est de 1000000000"
+    },
+    "interest": {
+      "required": "Le taux d'intérêt est requis",
+      "min": "Le taux d'intérêt minimum est de 1%",
+      "max": "Le taux d'intérêt maximum est de 50%"
+    },
+    "tenure": {
+      "required": "La durée du prêt est requise",
+      "min": "La durée minimum du prêt est de 1 an",
+      "max": "La durée maximum du prêt est de 50 ans"
+    }
+  }
 }

@@ -42,5 +42,22 @@
   "years": "Jahre",
   "year": "Jahr",
   "months": "Monate",
-  "month": "Monat"
+  "month": "Monat",
+  "validation": {
+    "amount": {
+      "required": "Darlehenshöhe erforderlich",
+      "min": "Mindestdarlehenshöhe beträgt 100",
+      "max": "Maximale Darlehenshöhe beträgt 1000000000"
+    },
+    "interest": {
+      "required": "Zinssatz erforderlich",
+      "min": "Mindestzinssatz beträgt 1%",
+      "max": "Maximaler Zinssatz beträgt 50%"
+    },
+    "tenure": {
+      "required": "Laufzeit des Darlehens erforderlich",
+      "min": "Minimale Darlehenslaufzeit beträgt 1 Jahr",
+      "max": "Maximale Darlehenslaufzeit beträgt 50 Jahre"
+    }
+  }
 }

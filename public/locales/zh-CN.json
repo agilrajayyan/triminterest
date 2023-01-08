@@ -42,5 +42,22 @@
   "years": "年",
   "year": "年",
   "months": "月",
-  "month": "月"
+  "month": "月",
+  "validation": {
+    "amount": {
+      "required": "贷款金额是必需的",
+      "min": "最低贷款金额是100",
+      "max": "最高贷款金额是1000000000"
+    },
+    "interest": {
+      "required": "利率是必需的",
+      "min": "最低利率是1％",
+      "max": "最高利率是50％"
+    },
+    "tenure": {
+      "required": "贷款期限是必需的",
+      "min": "最短贷款期限是1年",
+      "max": "最长贷款期限是50年"
+    }
+  }
 }
