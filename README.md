@@ -15,7 +15,6 @@ A personal finance tool to better plan your EMIs. Calculate the EMI for your loa
 ## Technical aspects:
 
 - React with MUI (https://mui.com/) for the UI components & react-chartjs-2 (https://react-chartjs-2.js.org/) for the charts.
-
 - Firebase (https://firebase.google.com/) for hosting
 - Continuous Deployment with Github Actions (https://github.com/features/actions)
 - https://ipapi.co API to preload the user preferences (currency & locale)
